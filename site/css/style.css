@@ -1,0 +1,490 @@
+/* ==========================================================================
+   Table Talks Australia — shared design system
+   Rebuilt outside Framer. See /docs/DA.md for the source design tokens.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400;0,500;0,700;1,400&family=Roboto:wght@400;500&display=swap');
+
+:root {
+  --bg-white: #FFFFFF;
+  --bg-cream: #F1F2E9;
+  --bg-offwhite: #FEFEFA;
+  --bg-blush: #E8DBD8;
+
+  --text-primary: #000000;
+  --text-secondary: rgba(0,0,0,0.8);
+  --text-tertiary: rgba(0,0,0,0.6);
+  --text-muted: rgba(0,0,0,0.4);
+  --text-faint: #999999;
+  --text-inverse: #FFFFFF;
+
+  --accent: #7A2436;
+  --accent-hover: rgba(122,36,54,0.85);
+  --black-section: #000000;
+
+  --font-display: "Times New Roman", Georgia, "PT Serif", serif;
+  --font-sans: "Arimo", Arial, Helvetica, sans-serif;
+  --font-ui-accent: "Roboto", sans-serif;
+
+  --radius: 10px;
+  --radius-pill: 50px;
+
+  --max-width: 1200px;
+  --gutter: 40px;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text-primary);
+  background: var(--bg-white);
+}
+
+h1, h2, h3, h4, h5, h6, p { margin: 0; }
+
+a { color: inherit; text-decoration: none; }
+
+img { max-width: 100%; display: block; }
+
+.wrap {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+/* ---------- Header ---------- */
+
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px var(--gutter);
+  background: var(--bg-white);
+}
+
+.logo img { height: 22px; width: auto; }
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.main-nav a {
+  font-size: 12px;
+  color: var(--text-secondary);
+  letter-spacing: 0.02em;
+}
+
+.main-nav a:hover { color: var(--accent); }
+
+.nav-search {
+  width: 16px;
+  height: 16px;
+  opacity: 0.7;
+}
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+.nav-toggle svg { width: 22px; height: 22px; }
+
+@media (max-width: 720px) {
+  .nav-toggle { display: block; }
+  .main-nav {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background: var(--bg-white);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 24px var(--gutter) 32px;
+    transform: translateY(-8px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+    border-bottom: 1px solid #EEE;
+  }
+  .main-nav.nav-open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  .main-nav .nav-search { display: none; }
+}
+
+/* ---------- Buttons & forms ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  padding: 0 24px;
+  border-radius: var(--radius);
+  border: none;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.btn-accent { background: var(--accent); color: var(--text-inverse); }
+.btn-accent:hover { background: var(--accent-hover); }
+
+.btn-dark { background: #000; color: var(--text-inverse); }
+.btn-dark:hover { background: #222; }
+
+input[type="text"], input[type="email"] {
+  height: 40px;
+  padding: 0 14px;
+  border: none;
+  border-radius: var(--radius);
+  background: #ECECEC;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--text-primary);
+  width: 100%;
+}
+
+input::placeholder { color: var(--text-faint); }
+
+.field-label {
+  display: block;
+  font-size: 12px;
+  color: var(--text-tertiary);
+  margin-bottom: 8px;
+}
+
+/* ---------- Typography helpers ---------- */
+
+.eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.h-section { font-size: 35px; font-weight: 400; line-height: 1.2; }
+.h-sub { font-size: 20px; font-weight: 400; line-height: 1.2; }
+.lead { font-size: 20px; line-height: 1.2; color: var(--text-primary); }
+.muted { color: var(--text-muted); }
+.small { font-size: 12px; line-height: 1.2; }
+
+.display-headline {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 60px;
+  line-height: 1.05;
+  letter-spacing: -1.8px;
+}
+
+.display-headline em { font-style: italic; }
+
+@media (max-width: 720px) {
+  .display-headline { font-size: 34px; letter-spacing: -0.8px; }
+  .h-section { font-size: 28px; }
+}
+
+/* ---------- Sections ---------- */
+
+section { padding: 80px 0; }
+
+.section-cream { background: var(--bg-cream); }
+.section-black { background: var(--black-section); color: var(--text-inverse); }
+
+/* Shared photographic treatment — applied to every hero/card image sitewide so
+   photos of varying source resolution still read as one consistent, considered
+   look rather than a patchwork. Capping height (instead of 70vh) also keeps the
+   upscale factor sane on large/tall viewports for our lower-resolution assets. */
+.hero-image,
+.hero-bleed,
+.hero-bleed-img,
+.feature-card-bg {
+  filter: saturate(1.08) contrast(1.05);
+}
+
+.hero-image {
+  width: 100%;
+  height: 480px;
+  object-fit: cover;
+  border-radius: 0;
+}
+
+.hero-bleed {
+  position: relative;
+  width: 100%;
+  height: clamp(360px, 58vh, 540px);
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-bleed-img {
+  width: 100%;
+  height: clamp(360px, 58vh, 540px);
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 720px) {
+  .hero-image, .hero-bleed, .hero-bleed-img { height: 320px; }
+}
+
+/* ---------- Card grids ---------- */
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: #E8E8E8;
+}
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  margin-top: 48px;
+}
+
+.grid-5 {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 32px;
+  margin-top: 48px;
+}
+
+.pillar h4 {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.pillar p { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+
+.feature-card {
+  position: relative;
+  aspect-ratio: 3/4;
+  color: var(--text-inverse);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  overflow: hidden;
+}
+
+/* Image layer — starts blurred, sharpens on hover/focus (matches the live site).
+   This is a real element (not a --custom-property url()) because CSS custom
+   properties holding url() resolve relative paths against the stylesheet, not
+   the HTML document — a background set this way would 404 silently. */
+.feature-card-bg {
+  position: absolute;
+  inset: -10px; /* overscan so the blur doesn't reveal edges */
+  background-size: cover;
+  background-position: center;
+  filter: blur(8px);
+  transform: scale(1.05);
+  transition: filter 0.5s ease, transform 0.5s ease;
+  z-index: 0;
+}
+
+.feature-card:hover .feature-card-bg,
+.feature-card:focus-visible .feature-card-bg {
+  filter: blur(0);
+  transform: scale(1);
+}
+
+.feature-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.15) 40%, rgba(0,0,0,0.55) 100%);
+  z-index: 1;
+}
+
+.feature-card > *:not(.feature-card-bg) { position: relative; z-index: 2; }
+
+.feature-card h2 {
+  font-family: var(--font-ui-accent);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.feature-card .date { font-size: 12px; opacity: 0.85; }
+
+@media (max-width: 900px) {
+  .grid-3, .grid-4, .grid-5 { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) {
+  .grid-3, .grid-4, .grid-5 { grid-template-columns: 1fr; }
+}
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+  background: var(--bg-white);
+  padding: 80px 0 32px;
+  border-top: 1px solid #EEE;
+}
+
+.footer-logo {
+  text-align: center;
+  font-family: var(--font-sans);
+  letter-spacing: 0.08em;
+  font-size: 14px;
+  color: var(--text-tertiary);
+  margin-bottom: 56px;
+}
+
+.footer-cols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr) 1.4fr;
+  gap: 32px;
+}
+
+.footer-col h5 {
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+.footer-col a, .footer-col p {
+  display: block;
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+}
+
+.footer-mission .mark { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+.footer-mission .mark img { height: 18px; }
+.footer-mission .mark-word { color: var(--accent); font-size: 13px; font-weight: 700; letter-spacing: 0.04em; }
+
+.footer-mission p.blurb { font-size: 13px; color: var(--text-tertiary); margin-bottom: 16px; }
+
+.footer-mission form { display: flex; flex-direction: column; gap: 10px; margin-bottom: 8px; }
+
+.footer-bottom {
+  margin-top: 64px;
+  padding-top: 24px;
+  border-top: 1px solid #EEE;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer-bottom .socials { display: flex; gap: 12px; }
+.footer-bottom .socials img { height: 16px; width: 16px; opacity: 0.7; }
+
+.footer-bottom .copyright { font-size: 12px; color: var(--text-muted); }
+
+.footer-bottom .links { display: flex; gap: 20px; }
+.footer-bottom .links a { font-size: 12px; color: var(--text-secondary); }
+.footer-bottom .links a:hover { color: var(--accent); }
+
+@media (max-width: 900px) {
+  .footer-cols { grid-template-columns: 1fr 1fr; }
+  .footer-mission { grid-column: 1 / -1; }
+}
+
+/* ---------- Journal / article pages ---------- */
+
+.article-meta { font-size: 12px; color: var(--text-muted); margin-bottom: 24px; }
+
+.article-body { max-width: 720px; }
+.article-body p { font-size: 16px; line-height: 1.7; color: var(--text-primary); margin-bottom: 24px; }
+
+.pull-quote {
+  font-family: var(--font-sans);
+  font-size: 20px;
+  line-height: 1.4;
+  max-width: 720px;
+  margin-bottom: 12px;
+}
+
+.pull-quote-attr { font-size: 13px; color: var(--text-tertiary); font-style: italic; margin-bottom: 48px; }
+
+.related-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 32px;
+}
+
+@media (max-width: 720px) {
+  .related-cards { grid-template-columns: 1fr; }
+}
+
+/* ---------- Contact / Subscribe / Join ---------- */
+
+.simple-page-hero { padding: 100px 0 60px; }
+.simple-page-hero h1 { font-size: 35px; margin-bottom: 24px; }
+
+.contact-grid, .form-grid, .join-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+@media (max-width: 720px) {
+  .contact-grid, .form-grid, .join-grid { grid-template-columns: 1fr; }
+}
+
+.contact-block { margin-bottom: 32px; }
+.contact-block h5 { font-size: 12px; color: var(--text-muted); margin-bottom: 6px; }
+.contact-block p, .contact-block a { font-size: 16px; }
+
+/* ---------- Missions page ---------- */
+
+.missions-hero { text-align: center; padding: 100px 0 60px; }
+.missions-hero h1 { font-size: 32px; max-width: 700px; margin: 0 auto 24px; }
+.missions-hero p { max-width: 500px; margin: 0 auto 32px; color: var(--text-tertiary); }
+.missions-hero .cta-row { display: flex; justify-content: center; gap: 16px; }
+
+.wip-note {
+  font-size: 12px;
+  color: var(--text-faint);
+  border-left: 2px solid var(--bg-blush);
+  padding-left: 12px;
+  margin: 24px 0 48px;
+  font-style: italic;
+}
+
+.profile-card {
+  background: var(--bg-blush);
+  border-radius: var(--radius);
+  padding: 24px;
+  text-align: center;
+}
+.profile-card img { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; margin: 0 auto 16px; }
+.profile-card h4 { font-size: 14px; margin-bottom: 4px; }
+.profile-card p.role { font-size: 12px; color: var(--text-muted); margin-bottom: 12px; }
+.profile-card p.quote { font-size: 13px; color: var(--text-tertiary); font-style: italic; }
+
+.ledger {
+  background: var(--black-section);
+  color: var(--text-inverse);
+  border-radius: var(--radius);
+  padding: 56px var(--gutter);
+}
+.ledger .label { font-size: 11px; letter-spacing: 0.08em; color: rgba(255,255,255,0.5); margin-bottom: 8px; }
+.ledger h3 { font-size: 24px; font-weight: 400; margin-bottom: 40px; color: rgba(255,255,255,0.9); }
+.ledger-stats { display: flex; gap: 64px; flex-wrap: wrap; }
+.ledger-stats .stat-value { font-size: 32px; margin-bottom: 8px; }
+.ledger-stats .stat-label { font-size: 11px; letter-spacing: 0.05em; color: rgba(255,255,255,0.5); }
