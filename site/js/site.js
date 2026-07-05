@@ -21,4 +21,39 @@
       document.querySelector('.main-nav').classList.toggle('nav-open');
     }
   });
+
+  // Submits any Formspree-backed form via AJAX so the user stays on the page
+  // instead of being redirected to Formspree's default confirmation page.
+  document.addEventListener('submit', function (e) {
+    var form = e.target.closest('form[action*="formspree.io"]');
+    if (!form) return;
+    e.preventDefault();
+
+    var status = form.querySelector('.form-status');
+    if (!status) {
+      status = document.createElement('p');
+      status.className = 'form-status small muted';
+      status.style.marginTop = '8px';
+      form.appendChild(status);
+    }
+    status.textContent = 'Sending…';
+
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(function (r) {
+      if (r.ok) {
+        form.reset();
+        status.textContent = 'Thanks — you’re on the list.';
+      } else {
+        r.json().then(function (data) {
+          var message = data && data.errors && data.errors.map(function (err) { return err.message; }).join(', ');
+          status.textContent = message || 'Something went wrong — please try again.';
+        });
+      }
+    }).catch(function () {
+      status.textContent = 'Something went wrong — please try again.';
+    });
+  });
 })();

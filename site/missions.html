@@ -187,10 +187,11 @@
           </div>
         </div>
         <p class="small muted" style="margin-top:40px; color:rgba(255,255,255,0.5);">Mission begins after R&amp;D. Simple. Transparent. · TODAY — Field Work &amp; Partnerships</p>
-        <div style="margin-top:40px; display:flex; gap:16px; flex-wrap:wrap; max-width:420px;">
-          <input type="email" placeholder="name@email.com" style="flex:1; min-width:200px;">
-          <a class="btn btn-accent" href="#">Join mission 001</a>
-        </div>
+        <form action="https://formspree.io/f/REPLACE_WITH_FORM_ID" method="POST" style="margin-top:40px; display:flex; gap:16px; flex-wrap:wrap; max-width:420px;">
+          <input type="email" name="email" placeholder="name@email.com" style="flex:1; min-width:200px;" required>
+          <input type="hidden" name="_subject" value="New Mission 001 signup — missions page">
+          <button type="submit" class="btn btn-accent">Join mission 001</button>
+        </form>
       </div>
     </div>
   </section>

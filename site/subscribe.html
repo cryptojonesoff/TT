@@ -19,15 +19,16 @@
         <h1>The Tables We Set.</h1>
         <p class="muted" style="margin-top:16px; max-width:360px;">Join our mailing list to receive early access to upcoming gatherings, collaborations, and immersive experiences.</p>
       </div>
-      <form style="display:flex; flex-direction:column; gap:20px; max-width:360px;" onsubmit="event.preventDefault(); this.reset(); alert('Thanks for joining — we will be in touch.');">
+      <form action="https://formspree.io/f/REPLACE_WITH_FORM_ID" method="POST" style="display:flex; flex-direction:column; gap:20px; max-width:360px;">
         <div>
           <span class="field-label">Name</span>
-          <input type="text" placeholder="Jane Smith" required>
+          <input type="text" name="name" placeholder="Jane Smith" required>
         </div>
         <div>
           <span class="field-label">Email</span>
-          <input type="email" placeholder="name@email.com" required>
+          <input type="email" name="email" placeholder="name@email.com" required>
         </div>
+        <input type="hidden" name="_subject" value="New mailing list signup — Join page">
         <button type="submit" class="btn btn-dark" style="width:100%;">Submit</button>
       </form>
     </div>
