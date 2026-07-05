@@ -20,33 +20,85 @@
       <div class="cta-row">
         <a class="btn btn-accent" href="#public-ledger">Join mission 001</a>
       </div>
-      <p class="wip-note">This Made by Many / Mission 001 section is an in-progress program page — some content below (community profiles, funding figures) is still placeholder on the live site and kept as such here. See docs/CONTEXT.md.</p>
     </div>
   </section>
 
-  <section style="padding-top:0;">
+  <section style="padding:0 0 56px;">
     <div class="wrap">
-      <img src="images/Lq0FMdEczoj5W3iugWPV2v79ls.png" alt="Map of Siargao mission stops" style="max-width:420px; margin:0 auto 24px;">
+      <div class="siargao-map-wrap" style="margin-bottom:32px;">
+        <svg viewBox="0 0 680 660" role="img">
+          <title>Animated map of Siargao island</title>
+          <desc>Stylized grey-line map of Siargao island with a soft dashed route looping slowly past Alegria Beach, Taktak Falls, Sugba Lagoon, Del Carmen, the airport, Magpopongko Rock Pools, Maasin River Bridge, Coconut View, Cloud 9, General Luna and Daku Island, marked with pink circles.</desc>
+
+          <path class="coast" d="M355,55 C375,75 390,95 395,120 C400,150 385,175 405,200 C425,225 445,240 455,270 C465,300 450,325 465,355 C480,385 500,400 505,425 C510,450 495,465 500,490 C505,515 490,535 465,545 C440,555 420,540 400,555 C380,570 370,590 345,595 C320,600 300,585 280,590 C255,595 235,580 225,555 C215,530 230,510 220,485 C210,460 190,450 195,425 C200,400 220,395 215,370 C210,345 190,335 195,310 C200,285 220,275 215,250 C210,225 230,215 235,190 C240,165 255,145 275,125 C295,105 315,80 335,65 C342,60 348,57 355,55 Z"/>
+
+          <path class="coast" d="M95,300 C110,290 130,295 140,305 C150,315 145,330 130,335 C115,340 100,335 95,320 C92,312 92,305 95,300 Z"/>
+          <path class="coast" d="M75,355 C85,350 98,353 100,362 C102,370 92,376 82,374 C74,372 72,362 75,355 Z"/>
+          <path class="coast" d="M515,565 C530,558 550,562 558,575 C565,588 555,600 538,600 C522,600 510,590 512,578 C513,573 513,568 515,565 Z"/>
+
+          <path id="routepath" class="route" d="M345,95 C330,120 310,140 300,170 C290,200 280,230 275,260 C270,290 260,310 250,335 C240,355 225,365 215,380 C230,395 250,400 270,395 C300,388 330,375 355,380 C380,385 400,375 415,365 C430,375 425,395 410,410 C395,425 375,435 360,450 C350,462 348,475 355,485 C365,495 380,492 395,485 C415,475 435,468 455,465 C470,462 480,468 485,478 C490,490 480,500 468,505 C455,510 445,505 440,490 C435,470 440,445 435,415 C430,380 420,340 405,300 C390,260 375,220 365,180 C358,150 350,120 345,95 Z"/>
+
+          <circle r="6" class="mk">
+            <animateMotion dur="26s" repeatCount="indefinite" rotate="auto" calcMode="linear">
+              <mpath href="#routepath"/>
+            </animateMotion>
+          </circle>
+
+          <circle cx="355" cy="90" r="6" class="mk"/>
+          <text class="lbl" x="368" y="88">Alegria Beach</text>
+
+          <circle cx="313" cy="128" r="6" class="mk"/>
+          <text class="lbl" x="215" y="126">Taktak Falls</text>
+
+          <circle cx="120" cy="300" r="6" class="mk"/>
+          <text class="lbl" x="20" y="288">Sugba Lagoon</text>
+
+          <circle cx="215" cy="382" r="6" class="mk"/>
+          <text class="lbl" x="118" y="398">Del Carmen</text>
+
+          <circle cx="270" cy="395" r="6" class="mk"/>
+          <text class="lbl" x="283" y="418">Aéroport</text>
+
+          <circle cx="415" cy="367" r="6" class="mk"/>
+          <text class="lbl" x="428" y="365">Magpopongko Rock Pools</text>
+
+          <circle cx="356" cy="452" r="6" class="mk"/>
+          <text class="lbl" x="369" y="450">Maasin River Bridge</text>
+
+          <circle cx="358" cy="478" r="6" class="mk"/>
+          <text class="lbl" x="371" y="497">Coconut view</text>
+
+          <circle cx="502" cy="463" r="6" class="mk"/>
+          <text class="lbl" x="515" y="461">Cloud 9</text>
+
+          <circle cx="466" cy="503" r="6" class="mk"/>
+          <text class="lbl" x="479" y="522">General Luna</text>
+
+          <circle cx="525" cy="578" r="6" class="mk"/>
+          <text class="lbl" x="538" y="582">Daku island</text>
+        </svg>
+      </div>
       <h3 class="h-sub" style="text-align:center; max-width:640px; margin:0 auto;">It's memory. It's identity. It's migration. It's family. It's architecture. It's landscape. It's the ocean. It's the people.</h3>
+      <p class="wip-note" style="text-align:center; max-width:640px; margin:24px auto 0;">This Made by Many / Mission 001 section is an in-progress program page — some content below (community profiles, funding figures) is still placeholder on the live site and kept as such here. See docs/CONTEXT.md.</p>
     </div>
   </section>
 
-  <img class="hero-image" src="images/5ILRvlYXf72kHSVHqpa3snGzjU.jpg" alt="Siargao ocean">
+  <video class="hero-image" src="images/ocean.mp4" poster="images/5ILRvlYXf72kHSVHqpa3snGzjU.jpg" loop autoplay muted playsinline></video>
 
-  <section style="text-align:center;">
+  <section style="text-align:center; padding:64px 0;">
     <div class="wrap" style="max-width:640px;">
       <h3 class="h-sub" style="margin-bottom:16px;">Communities shouldn't depend on charity alone.</h3>
       <p class="muted">Your funds don't matter. Your participation does. Everyone becomes part of the mission.</p>
     </div>
   </section>
 
-  <section class="section-cream">
+  <section class="section-cream" style="padding:64px 0;">
     <div class="wrap">
       <h3 class="h-sub" style="margin-bottom:8px;">MISSION LOG: A 3-step journey with the locals.</h3>
       <p class="muted small" style="margin-bottom:32px;">Below are our mission log cards. Every visit, meal and discovery. We update every new findings.</p>
       <div class="grid-3">
         <div class="feature-card">
-          <div class="feature-card-bg" style="background-image:url('images/5Rak8TRZjNL38wdiflKcKlS0Wos.png')"></div>
+          <div class="feature-card-bg" style="background-image:url('images/Lq0FMdEczoj5W3iugWPV2v79ls.png')"></div>
           <span></span>
           <div>
             <h2>1 DAY – THE FIRST TABLE: One barangay, one table. We show how we can make it work.</h2>
@@ -54,7 +106,7 @@
           </div>
         </div>
         <div class="feature-card">
-          <div class="feature-card-bg" style="background-image:url('images/Vgy6AuxpLy7JlRJThlznIQ8LiMI.png')"></div>
+          <div class="feature-card-bg" style="background-image:url('images/Lq0FMdEczoj5W3iugWPV2v79ls.png')"></div>
           <span></span>
           <div>
             <h2>3 DAYS – ISLAND TABLE: Multiple communities. Three barangays, more producers, more recipes. We learn and expand.</h2>
@@ -62,7 +114,7 @@
           </div>
         </div>
         <div class="feature-card">
-          <div class="feature-card-bg" style="background-image:url('images/5Rak8TRZjNL38wdiflKcKlS0Wos.png')"></div>
+          <div class="feature-card-bg" style="background-image:url('images/Lq0FMdEczoj5W3iugWPV2v79ls.png')"></div>
           <span></span>
           <div>
             <h2>2 WEEKS – REDEFINING SIARGAO LOOP AND BOODLE FIGHT CULTURE IN THE PHILIPPINES: A full island expedition exploring communities, culture, circularity and participatory practices.</h2>
@@ -73,7 +125,7 @@
     </div>
   </section>
 
-  <section>
+  <section style="padding:64px 0;">
     <div class="wrap">
       <h5 class="eyebrow" style="margin-bottom:32px;">Missions across the island:</h5>
       <div class="grid-4">
@@ -106,7 +158,7 @@
     </div>
   </section>
 
-  <section class="section-cream" style="text-align:center;">
+  <section class="section-cream" style="text-align:center; padding:64px 0;">
     <div class="wrap" style="max-width:640px;">
       <h3 class="h-sub" style="margin-bottom:16px;">WHY WE'RE BUILDING IT THIS WAY.</h3>
       <p class="muted" style="margin-bottom:32px;">You're not funding one event. We're collaborating for the expedition to grow.</p>
@@ -115,7 +167,7 @@
     </div>
   </section>
 
-  <section id="public-ledger">
+  <section id="public-ledger" style="padding:64px 0;">
     <div class="wrap">
       <div class="ledger">
         <div class="label">PUBLIC LEDGER</div>
