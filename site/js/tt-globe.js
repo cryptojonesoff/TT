@@ -8,27 +8,30 @@
 // All data below is placeholder — swap for real ones later, the shape
 // (name/place/date or person/place/amount + lat/lng) is meant to stay stable.
 
-// "event" — TT missions / IRL initiatives (independent from fundraise, no arcs between them)
-// SF&WF, Siargao Loop and Family Style are all real TT initiatives based out of Siargao —
-// kept at distinct nearby points on the island rather than one stacked marker, and present
-// in every rotating data set below since they're the anchor of the network.
+// "event" — TT missions / IRL initiatives (independent from fundraise, no arcs between them).
+// SF&WF, Siargao Loop and Family Style are real TT initiatives anchored in Siargao — kept at
+// distinct nearby points on the island rather than one stacked marker, and present in every
+// rotating data set below. Together with the 4 rotating extras, each lap covers the full
+// spread of mission formats: Festival, Field Research, Product, Salon, Experience, Adventure,
+// and general Mission.
 const CORE_EVENTS = [
-  { name: 'SF&WF', place: 'Siargao', date: "Feb '26", lat: 9.86, lng: 126.05 },
-  { name: 'Siargao Loop', place: 'Siargao', date: "Nov '25", lat: 9.78, lng: 126.02 },
-  { name: 'Family Style', place: 'Siargao', date: "Mar '26", lat: 9.93, lng: 126.1 },
+  { name: 'SF&WF', place: 'Siargao', date: "Feb '26", lat: 9.86, lng: 126.05 }, // Festival
+  { name: 'Siargao Loop', place: 'Siargao', date: "Nov '25", lat: 9.78, lng: 126.02 }, // Field Research
+  { name: 'Family Style', place: 'Siargao', date: "Mar '26", lat: 9.93, lng: 126.1 }, // Product (cookbook)
 ];
 
 // Three predefined data sets — the globe swaps to the next one every full
 // rotation, so three laps show three different "snapshots" of the network
-// before looping back to the first.
+// before looping back to the first. Each set's 4 extra missions cover
+// Adventure, Salon, Experience and general Mission, in that order.
 const DATA_SETS = [
   {
     events: [
       ...CORE_EVENTS,
-      { name: 'Ubuntu Table', place: 'Cape Town', date: "Aug '25", lat: -33.9249, lng: 18.4241 },
-      { name: 'Casa Comal', place: 'Tulum', date: "May '26", lat: 20.2114, lng: -87.4654 },
-      { name: 'Beach Kitchen', place: 'Byron Bay', date: "Oct '25", lat: -28.6474, lng: 153.602 },
-      { name: 'Mesa Aberta', place: 'Lisbon', date: "Jun '26", lat: 38.7223, lng: -9.1393 },
+      { name: 'Reef Trail', place: 'Byron Bay', date: "Oct '25", lat: -28.6474, lng: 153.602 }, // Adventure
+      { name: 'Ubuntu Salon', place: 'Cape Town', date: "Aug '25", lat: -33.9249, lng: 18.4241 }, // Salon
+      { name: 'Comal Nights', place: 'Tulum', date: "May '26", lat: 20.2114, lng: -87.4654 }, // Experience
+      { name: 'Mesa Aberta', place: 'Lisbon', date: "Jun '26", lat: 38.7223, lng: -9.1393 }, // Mission
     ],
     fundraise: [
       { person: 'Camille B.', place: 'Paris', amount: '$4,200', lat: 48.8566, lng: 2.3522 },
@@ -41,10 +44,10 @@ const DATA_SETS = [
   {
     events: [
       ...CORE_EVENTS,
-      { name: 'Open Kitchen', place: 'Mexico City', date: "Jan '26", lat: 19.4326, lng: -99.1332 },
-      { name: 'Long Table', place: 'Berlin', date: "Sep '25", lat: 52.52, lng: 13.405 },
-      { name: 'Harbour Feast', place: 'Auckland', date: "Dec '25", lat: -36.8485, lng: 174.7633 },
-      { name: 'Spice Route', place: 'Marrakech', date: "Apr '26", lat: 31.6295, lng: -7.9811 },
+      { name: 'Open Kitchen', place: 'Mexico City', date: "Jan '26", lat: 19.4326, lng: -99.1332 }, // Adventure
+      { name: 'Berlin Salon', place: 'Berlin', date: "Sep '25", lat: 52.52, lng: 13.405 }, // Salon
+      { name: 'Harbour Feast', place: 'Auckland', date: "Dec '25", lat: -36.8485, lng: 174.7633 }, // Experience
+      { name: 'Spice Route', place: 'Marrakech', date: "Apr '26", lat: 31.6295, lng: -7.9811 }, // Mission
     ],
     fundraise: [
       { person: 'Sofia M.', place: 'Barcelona', amount: '$5,600', lat: 41.3851, lng: 2.1734 },
@@ -57,10 +60,10 @@ const DATA_SETS = [
   {
     events: [
       ...CORE_EVENTS,
-      { name: 'Firelight Table', place: 'Reykjavik', date: "Jul '25", lat: 64.1466, lng: -21.9426 },
-      { name: 'Monsoon Kitchen', place: 'Kochi', date: "Jun '26", lat: 9.9312, lng: 76.2673 },
-      { name: 'Desert Feast', place: 'Dubai', date: "Feb '26", lat: 25.2048, lng: 55.2708 },
-      { name: 'River Table', place: 'Bangkok', date: "Oct '25", lat: 13.7563, lng: 100.5018 },
+      { name: 'Monsoon Trail', place: 'Kochi', date: "Jun '26", lat: 9.9312, lng: 76.2673 }, // Adventure
+      { name: 'Reykjavik Salon', place: 'Reykjavik', date: "Jul '25", lat: 64.1466, lng: -21.9426 }, // Salon
+      { name: 'Desert Feast', place: 'Dubai', date: "Feb '26", lat: 25.2048, lng: 55.2708 }, // Experience
+      { name: 'River Table', place: 'Bangkok', date: "Oct '25", lat: 13.7563, lng: 100.5018 }, // Mission
     ],
     fundraise: [
       { person: 'Noor H.', place: 'Cairo', amount: '$6,800', lat: 30.0444, lng: 31.2357 },
