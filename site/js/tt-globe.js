@@ -24,7 +24,7 @@ const FUNDRAISE_LOCATIONS = [
 ];
 
 const EVENT_COLOR = [0.478, 0.141, 0.212]; // matches --accent (#7A2436)
-const FUNDRAISE_COLOR = [0.306, 0.612, 0.525]; // teal/sage
+const FUNDRAISE_COLOR = [0.722, 0.576, 0.353]; // warm gold (#B8935A), pairs with the burgundy accent
 
 // fundraise → event flows, max 5, purely illustrative
 const ARC_LINKS = [
@@ -40,8 +40,8 @@ function findPoint(name) {
 }
 
 const MARKERS = [
-  ...EVENT_LOCATIONS.map((p) => ({ location: [p.lat, p.lng], size: 0.06, color: EVENT_COLOR })),
-  ...FUNDRAISE_LOCATIONS.map((p) => ({ location: [p.lat, p.lng], size: 0.045, color: FUNDRAISE_COLOR })),
+  ...EVENT_LOCATIONS.map((p) => ({ location: [p.lat, p.lng], size: 0.05, color: EVENT_COLOR })),
+  ...FUNDRAISE_LOCATIONS.map((p) => ({ location: [p.lat, p.lng], size: 0.038, color: FUNDRAISE_COLOR })),
 ];
 
 const ARCS = ARC_LINKS.map(([from, to]) => {
@@ -67,18 +67,19 @@ function initGlobe() {
     phi: 0,
     theta: 0.3,
     dark: 1,
-    diffuse: 1.2,
+    diffuse: 1.15,
     mapSamples: 16000,
-    mapBrightness: 4,
-    baseColor: [0.12, 0.12, 0.14],
+    mapBrightness: 5.5,
+    mapBaseBrightness: 0.02,
+    baseColor: [0.14, 0.115, 0.11], // warm near-black, tinted toward the accent rather than neutral grey
     markerColor: EVENT_COLOR,
-    glowColor: [0.25, 0.25, 0.3],
-    opacity: 0.9,
+    glowColor: [0.35, 0.26, 0.23], // warm burgundy-brown rim light instead of cool grey-blue
+    opacity: 1,
     markers: MARKERS,
     arcs: ARCS,
     arcColor: FUNDRAISE_COLOR,
-    arcWidth: 1.4,
-    arcHeight: 0.3,
+    arcWidth: 1,
+    arcHeight: 0.22,
   });
 
   new ResizeObserver(([entry]) => {
