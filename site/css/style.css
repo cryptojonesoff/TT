@@ -205,11 +205,6 @@ section { padding: 80px 0; }
 
 .section-cream { background: var(--bg-cream); }
 .section-black { background: var(--black-section); color: var(--text-inverse); }
-.section-darkgrey { background: #1C1C1C; color: var(--text-inverse); }
-.section-darkgrey .eyebrow, .section-darkgrey .muted { color: rgba(255,255,255,0.5); }
-.section-darkgrey .pillar p { color: rgba(255,255,255,0.5); }
-.section-darkgrey .grid-4, .section-darkgrey .grid-5 { border-bottom-color: rgba(255,255,255,0.15); }
-.section-darkgrey .grid-4 .pillar, .section-darkgrey .grid-5 .pillar { border-left-color: rgba(255,255,255,0.15); }
 
 /* Shared photographic treatment — applied to every hero/card image sitewide so
    photos of varying source resolution still read as one consistent, considered
@@ -246,6 +241,43 @@ section { padding: 80px 0; }
 
 @media (max-width: 720px) {
   .hero-image, .hero-bleed, .hero-bleed-img { height: 320px; }
+}
+
+.sponsor-block {
+  display: inline-flex;
+  align-items: center;
+  padding: 32px 40px;
+  border: 1px solid #EEE;
+  margin-bottom: 64px;
+}
+
+.photo-duo, .photo-grid-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 48px 0 64px;
+}
+
+.photo-duo .photo-cell, .photo-grid-2col .photo-cell {
+  aspect-ratio: 3/4;
+  background-size: cover;
+  background-position: center;
+  filter: saturate(1.08) contrast(1.05);
+}
+
+@media (max-width: 720px) {
+  .photo-duo, .photo-grid-2col { grid-template-columns: 1fr; }
+}
+
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* ---------- Card grids ---------- */
@@ -293,8 +325,32 @@ section { padding: 80px 0; }
 
 .pillar p { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
 
+.philosophy-lead { font-size: 18px; font-weight: 700; line-height: 1.5; }
+.philosophy-body { font-size: 15px; line-height: 1.6; }
+
 @media (max-width: 900px) {
   .grid-4 .pillar, .grid-5 .pillar { border-left: none; padding-left: 0; }
+}
+
+@media (max-width: 720px) {
+  .philosophy-heading { font-size: 32px; }
+  .philosophy-lead { font-size: 20px; font-weight: 400; }
+  .philosophy-body { font-size: 16px; }
+
+  .grid-4, .grid-5 {
+    grid-template-columns: 1fr;
+    gap: 0;
+    border-bottom: none;
+  }
+  .grid-4 .pillar, .grid-5 .pillar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 220px;
+    padding: 40px 0;
+    border-top: 1px solid #EEE;
+  }
+  .grid-4 .pillar h4, .grid-5 .pillar h4 { margin-bottom: 0; }
 }
 
 .feature-card {
@@ -373,9 +429,20 @@ section { padding: 80px 0; }
 }
 
 .footer-cols {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr) 1.4fr;
-  gap: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 80px;
+}
+
+.footer-mission {
+  flex: 0 0 auto;
+  width: 280px;
 }
 
 .footer-col h5 {
@@ -420,9 +487,25 @@ section { padding: 80px 0; }
 .footer-bottom .links a { font-size: 12px; color: var(--text-secondary); }
 .footer-bottom .links a:hover { color: var(--accent); }
 
-@media (max-width: 900px) {
-  .footer-cols { grid-template-columns: 1fr 1fr; }
-  .footer-mission { grid-column: 1 / -1; }
+@media (max-width: 720px) {
+  .footer-logo { text-align: center; }
+
+  .footer-cols { flex-direction: column; gap: 48px; }
+
+  .footer-links {
+    gap: 40px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .footer-links .footer-col { flex: 0 0 auto; white-space: nowrap; }
+  .footer-col-platform { order: 2; }
+  .footer-col-madebymany { order: 1; }
+
+  .footer-mission { width: 100%; text-align: center; }
+  .footer-mission .mark { justify-content: center; }
+  .footer-mission form { align-items: center; }
+  .footer-mission input, .footer-mission .btn { width: 100%; max-width: 360px; }
 }
 
 /* ---------- Journal / article pages ---------- */

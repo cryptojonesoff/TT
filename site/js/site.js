@@ -15,6 +15,22 @@
 
   document.querySelectorAll('[data-include]').forEach(include);
 
+  // Fades/slides elements in the first time they scroll into view.
+  var revealEls = document.querySelectorAll('.reveal-on-scroll');
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    revealEls.forEach(function (el) { observer.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add('is-visible'); });
+  }
+
   document.addEventListener('click', function (e) {
     var toggle = e.target.closest('.nav-toggle');
     if (toggle) {
