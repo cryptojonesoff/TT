@@ -18,10 +18,10 @@ const EVENTS = [
 
 // "fundraise" — financial backers, spread across continents
 const FUNDRAISE = [
-  { name: 'Paris, France', amount: '$4,200', lat: 48.8566, lng: 2.3522 },
-  { name: 'New York, USA', amount: '$9,800', lat: 40.7128, lng: -74.006 },
-  { name: 'Singapore', amount: '$6,100', lat: 1.3521, lng: 103.8198 },
-  { name: 'São Paulo, Brazil', amount: '$3,450', lat: -23.5505, lng: -46.6333 },
+  { person: 'Camille B.', location: 'Paris, France', amount: '$4,200', lat: 48.8566, lng: 2.3522 },
+  { person: 'Marcus T.', location: 'New York, USA', amount: '$9,800', lat: 40.7128, lng: -74.006 },
+  { person: 'Wei L.', location: 'Singapore', amount: '$6,100', lat: 1.3521, lng: 103.8198 },
+  { person: 'Isabela R.', location: 'São Paulo, Brazil', amount: '$3,450', lat: -23.5505, lng: -46.6333 },
 ];
 
 const EVENT_COLOR = '#7A2436'; // --accent
@@ -32,7 +32,7 @@ const GRATICULE_COLOR = 'rgba(0,0,0,0.05)';
 const COAST_COLOR = '#8A8880'; // matches --map-coast used on the Siargao route map
 const RING_COLOR = 'rgba(122,36,54,0.35)'; // --accent, low opacity
 
-const ROTATE_SPEED = 0.045; // degrees per frame
+const ROTATE_SPEED = 0.07; // degrees per frame
 const TILT = -22;
 
 function makeLabel(point, kind) {
@@ -46,8 +46,8 @@ function makeLabel(point, kind) {
     title.textContent = point.name;
     sub.textContent = point.date;
   } else {
-    title.textContent = point.name;
-    sub.textContent = 'pledged ' + point.amount;
+    title.textContent = point.person;
+    sub.textContent = point.location + ' — pledged ' + point.amount;
   }
   el.append(title, sub);
   el.style.opacity = '0';
