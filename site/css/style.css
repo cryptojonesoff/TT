@@ -488,24 +488,72 @@ section { padding: 80px 0; }
   background: var(--bg-blush);
   border-radius: var(--radius);
   padding: 24px;
-  text-align: center;
+  text-align: left;
 }
-.profile-card img { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; margin: 0 auto 16px; }
+.profile-card .swatch { width: 100%; height: 60px; border-radius: var(--radius); margin-bottom: 16px; background: var(--accent); }
 .profile-card h4 { font-size: 14px; margin-bottom: 4px; }
 .profile-card p.role { font-size: 12px; color: var(--text-muted); margin-bottom: 12px; }
-.profile-card p.quote { font-size: 13px; color: var(--text-tertiary); font-style: italic; }
+.profile-card p.quote { font-size: 13px; color: var(--text-tertiary); font-style: italic; margin-bottom: 16px; }
 
-.ledger {
-  background: var(--black-section);
-  color: var(--text-inverse);
-  border-radius: var(--radius);
-  padding: 56px var(--gutter);
+/* Two-column split: short caption left, larger statement right (Food isn't just food. / It's memory...) */
+.split-2col {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 40px;
+  align-items: center;
 }
-.ledger .label { font-size: 11px; letter-spacing: 0.08em; color: rgba(255,255,255,0.5); margin-bottom: 8px; }
-.ledger h3 { font-size: 24px; font-weight: 400; margin-bottom: 40px; color: rgba(255,255,255,0.9); }
+.split-2col .caption { font-size: 13px; color: var(--accent); font-weight: 600; letter-spacing: 0.02em; }
+.split-2col .statement { font-size: 20px; line-height: 1.5; }
+@media (max-width: 720px) {
+  .split-2col { grid-template-columns: 1fr; gap: 16px; }
+}
+
+/* Labeled category list — EXPERIENCE / STORY / COOKBOOK / PARTNER / VOLUNTEER, etc. */
+.category-list { display: flex; flex-direction: column; gap: 20px; }
+.category-list .cat-label { font-size: 12px; font-weight: 700; letter-spacing: 0.04em; color: var(--accent); margin-bottom: 4px; }
+.category-list .cat-desc { font-size: 13px; color: var(--text-tertiary); line-height: 1.5; }
+.category-list.on-dark .cat-label { color: var(--bg-blush); }
+.category-list.on-dark .cat-desc { color: rgba(255,255,255,0.6); }
+.category-list.row { flex-direction: row; flex-wrap: wrap; gap: 32px; }
+.category-list.row > div { flex: 1; min-width: 180px; }
+
+/* Video + category list split */
+.video-split { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+.video-split video { width: 100%; border-radius: var(--radius); display: block; }
+@media (max-width: 900px) {
+  .video-split { grid-template-columns: 1fr; }
+}
+
+/* Public Ledger — full-bleed blurred background image, matching the live site
+   (not a solid black card). Stats section sits over the image; the signup
+   form sits in a plain dark section directly below. */
+.ledger-bleed {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  color: var(--text-inverse);
+  padding: 72px var(--gutter) 56px;
+}
+.ledger-bleed::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(20,6,10,0.55), rgba(20,6,10,0.75));
+}
+.ledger-bleed > * { position: relative; z-index: 1; }
+.ledger-bleed .label { font-size: 11px; letter-spacing: 0.08em; color: rgba(255,255,255,0.6); margin-bottom: 8px; }
+.ledger-bleed h3 { font-size: 24px; font-weight: 400; margin-bottom: 40px; color: rgba(255,255,255,0.9); }
 .ledger-stats { display: flex; gap: 64px; flex-wrap: wrap; }
 .ledger-stats .stat-value { font-size: 32px; margin-bottom: 8px; }
-.ledger-stats .stat-label { font-size: 11px; letter-spacing: 0.05em; color: rgba(255,255,255,0.5); }
+.ledger-stats .stat-label { font-size: 11px; letter-spacing: 0.05em; color: rgba(255,255,255,0.6); }
+
+.ledger-dark {
+  background: var(--black-section);
+  color: var(--text-inverse);
+  padding: 40px var(--gutter) 56px;
+}
+.ledger-dark form { display: flex; gap: 16px; flex-wrap: wrap; max-width: 420px; margin-bottom: 40px; }
+.ledger-dark .category-list.row { border-top: 1px solid rgba(255,255,255,0.15); padding-top: 32px; }
 
 /* ---------- Hero globe ----------
    Minimal line-art coastlines on a canvas (real geography via d3-geo, not

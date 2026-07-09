@@ -83,18 +83,22 @@ Page-by-page map of sections, copy and imagery, extracted from the live site's r
 
 ## 8. Missions (`/missions`) — Made by Many / Siargao expedition landing page
 
-*Flagged in CONTEXT.md as work-in-progress content — placeholders kept as-is, not invented.*
+*Flagged in CONTEXT.md as work-in-progress content — placeholders kept as-is, not invented. This is a distinct "waitlist" template with its own header/footer (not the shared site partials) — see CONTEXT.md for the specific copy/link differences.*
 
-1. Hero: "Some of the world's most extraordinary recipes have never been written down." + "We're travelling across Siargao to preserve the stories, traditions and people behind its food — before they're lost." + 2× "Join mission 001" CTA
-2. Interactive-style map graphic of Siargao (image `Lq0FMdEczoj5W3iugWPV2v79ls.png`) with pin labels (Tamak Falls, Naked Beach, Magpupungko Rock Pools, Bagardo River Bridge, Cloud 9, General Luna)
-3. "It's memory. It's identity. It's migration. It's family. It's architecture. It's landscape. It's the ocean. It's the people." — set over ocean photo (`5ILRvlYXf72kHSVHqpa3snGzjU.jpg`)
-4. "Communities shouldn't depend on charity alone." + "Your funds don't matter. Your participation does. Everyone becomes part of the mission."
-5. "MISSION LOG: A 3-step journey with the locals." — 3 dark photo cards: "1 DAY – THE FIRST TABLE" / "3 DAYS – ISLAND TABLE" / "2 WEEKS – REDEFINING SIARGAO LOOP AND BOODLE FIGHT CULTURE" (images `5Rak8TRZjNL38wdiflKcKlS0Wos.png`, others reused)
-6. Community profile cards (blush/pink placeholder tiles, avatar `YUBKjjh6tiUfWs1sIAwBzgFKFw.png` repeated): Nanay Robelen 94 (Home Cook), Tatay Ben 76 (Fisherman), Uncle Giting 59 (Farmer), Kuya Jojo 37 (Architect) — each with a quote and a `[ insert ]` placeholder block (unfinished)
-7. "WHY WE'RE BUILDING IT THIS WAY." — "You're not funding one event. We're collaborating for the expedition to grow." / "THE ROAD TO SIARGAO LOOP." / "COMMUNITY 1,070 members"
-8. Dark "Public Ledger" module (black background, white/gray text): "Mission 1 is currently in: Field Research & Development" — AUD$230 funds raised — 6 families fed — General Luna, Siargao PH — "Mission begins after R&D. Simple. Transparent." — EXPERIENCE / STORY / COOKBOOK / PARTNER / VOLUNTEER sub-nav
-9. Email capture + "Join mission 001" button
-10. Footer (global, dark-styled variant within this module)
+1. Page-specific header: nav reads "About / Articles / Up Next" (Up Next → Instagram, not `/subscribe`)
+2. Hero: "Some of the world's most extraordinary recipes have never been written down." + "We're travelling across Siargao to preserve the stories, traditions and people behind its food — before they're lost." + "↓ See how it works behind-the-scenes" (links to a PDF) + "FOLLOW THE MISSION" CTA
+3. Animated dashed-route SVG map of Siargao with pin labels (Alegria Beach, Taktak Falls, Sugba Lagoon, Del Carmen, Aéroport, Magpopongko Rock Pools, Maasin River Bridge, Coconut View, Cloud 9, General Luna, Daku Island) — our own enhancement on top of the live site's plainer static map graphic; kept intentionally as a bonus, not reverted for parity
+4. Two-column split: "Food isn't just food." (caption) / "It's memory. It's identity. It's migration. It's family. It's architecture. It's landscape. It's the ocean. It's the people." (statement)
+5. Full-bleed ocean video (`ocean.mp4`, poster `5ILRvlYXf72kHSVHqpa3snGzjU.jpg`)
+6. "Communities shouldn't depend on charity alone." + "Your funds don't matter. Your participation does. Everyone becomes part of the mission."
+7. "MISSION LOG: A 3-step journey with the locals." — 3 photo cards, all using the same image (`Vgy6AuxpLy7JlRJThlznIQ8LiMI.png`, matching the live site's own reuse of one image across all three): "1 DAY - THE FIRST TABLE" (Jul 6, 2026) / "3 DAYS - ISLAND TABLE" (Jul 5, 2026) / "2 WEEKS - REDEFINING SIARGAO LOOP AND BOODLE FIGHT CULTURE" (Jul 5, 2026) — target archive pages (`/archives/mission-1-general-luna` etc.) 404 on the live site, so these are non-linking here too
+8. "Missions across the island:" — 2×2 profile grid (Kuya/Architect, Tatay/Fisherman, Uncle/Farmer, Nanay/Home Cook), each a quote + solid maroon colour swatch (matching the live site, which also dropped the earlier circular avatar photos for a plain colour block) — followed by "FOLLOW THE MISSION" CTA
+9. Video + labelled list split: `field-research.mp4` ("Field research with real stories.") next to a 5-item EXPERIENCE / STORY / COOKBOOK / PARTNER / VOLUNTEER list
+10. "WHY WE'RE BUILDING IT THIS WAY." / "THE ROAD TO SIARGAO LOOP." / "COMMUNITY 1,070 members"
+11. "Co-create extraordinary things, with extraordinary people, for long-term value." + "We don't want your money. We want your participation." — partners row intentionally left unbuilt (live site shows seven literal `[Insert logo]` placeholders)
+12. Full-bleed "Public Ledger" module — blurred background image (`Lq0FMdEczoj5W3iugWPV2v79ls.png`), not a solid card: "Mission 1 is currently in: Field Research & Development" — AUD$234.42 funds raised / 6 families fed / General Luna, SIARGAO PH / 594 current members — "Mission begins after R&D. Simple. Transparent." + "TODAY — Field Work & Partnerships" (PDF link)
+13. Plain dark section directly below: email capture + "Join Mission 1" button, then a 3-item EXPERIENCE / PARTICIPATE / FOLLOW list
+14. Page-specific footer: "Siargao Limited Edition" (not "Siargao Cookbook — IAO Edition"), "travelling across the world" (not "across Siargao"), "Join Mission 1" CTA, and Contact/Join/Feedback/Careers all link to `./` — matching the live site's own unfinished state on this template
 
 ## 9. Archives — case study template (`/archives/non5`, `/archives/royal-exhibition-building`, `/archives/aster-bar-x-masterchef-david-tan`)
 
@@ -114,7 +118,7 @@ Template for individual event/activation write-ups. All three archive entries ar
 
 `/old-home`, `/journals`, `/journals/the-tables-we-set` — confirmed byte-identical blank Framer shells with zero visible content as of this writing. Left out of the rebuild; add them once the client publishes real content.
 
-## Image asset inventory (33 unique files, downloaded to `site/images/`)
+## Image asset inventory (34 unique image files + 2 videos, downloaded to `site/images/`)
 
 | File | Used on | Role |
 |---|---|---|
@@ -138,10 +142,14 @@ Template for individual event/activation write-ups. All three archive entries ar
 | `Q5vX1frs00fRz2j08e6gB2hJCw.png` | archives/non5 | related card thumbnail |
 | `AP4zrowMVyEsHQv4OQjGEv6znPU.png` | archives/non5 | related card thumbnail |
 | `gI4N59XS4EzyPSvgwrM5dVxLhTg.png` | archives/non5 | related card thumbnail |
-| `Lq0FMdEczoj5W3iugWPV2v79ls.png` | missions | Siargao map graphic |
-| `YUBKjjh6tiUfWs1sIAwBzgFKFw.png` | missions | community profile avatar (reused ×4) |
-| `5ILRvlYXf72kHSVHqpa3snGzjU.jpg` | missions | ocean photo |
-| `Vgy6AuxpLy7JlRJThlznIQ8LiMI.png` | missions | mission log photo |
+| `Lq0FMdEczoj5W3iugWPV2v79ls.png` | missions | Public Ledger full-bleed background |
+| `5ILRvlYXf72kHSVHqpa3snGzjU.jpg` | missions | ocean video poster |
+| `ocean.mp4` | missions | full-bleed ocean video |
+| `field-research.mp4` | missions | "Field research with real stories." video |
+| `Vgy6AuxpLy7JlRJThlznIQ8LiMI.png` | missions | mission log photo (all 3 cards, matches live reuse) |
+| `suKn2Iv9iyM5Yh9PHzknrBKNp4.png` | missions | profile card colour swatch (replaces old avatar photo — matches live) |
+
+`YUBKjjh6tiUfWs1sIAwBzgFKFw.png` (old circular avatar photo) is no longer used — the live site replaced it with a plain colour swatch; kept the file in `site/images/` but nothing references it now.
 | `QRRmXvad56EgyxRqI1H9Ey7wlY.png` | archives/royal-exhibition-building | second hero photo |
 | `vif6SSw3Av8j1IW7hVFLTtApzZ0.png` | archives/royal-exhibition-building | sponsor logo strip (Rina's / Three Bays) |
 | `rFJ7mgOw4oUngmPHANXkg18MQ.png` | archives/royal-exhibition-building | event photo |
