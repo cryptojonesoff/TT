@@ -10,24 +10,66 @@
 
 // "event" — TT missions / IRL initiatives (independent from fundraise, no arcs between them)
 // SF&WF, Siargao Loop and Family Style are all real TT initiatives based out of Siargao —
-// kept at distinct nearby points on the island rather than one stacked marker.
-const EVENTS = [
+// kept at distinct nearby points on the island rather than one stacked marker, and present
+// in every rotating data set below since they're the anchor of the network.
+const CORE_EVENTS = [
   { name: 'SF&WF', place: 'Siargao', date: "Feb '26", lat: 9.86, lng: 126.05 },
   { name: 'Siargao Loop', place: 'Siargao', date: "Nov '25", lat: 9.78, lng: 126.02 },
   { name: 'Family Style', place: 'Siargao', date: "Mar '26", lat: 9.93, lng: 126.1 },
-  { name: 'Ubuntu Table', place: 'Cape Town', date: "Aug '25", lat: -33.9249, lng: 18.4241 },
-  { name: 'Casa Comal', place: 'Tulum', date: "May '26", lat: 20.2114, lng: -87.4654 },
-  { name: 'Beach Kitchen', place: 'Byron Bay', date: "Oct '25", lat: -28.6474, lng: 153.602 },
-  { name: 'Mesa Aberta', place: 'Lisbon', date: "Jun '26", lat: 38.7223, lng: -9.1393 },
 ];
 
-// "fundraise" — financial backers, spread across continents
-const FUNDRAISE = [
-  { person: 'Camille B.', place: 'Paris', amount: '$4,200', lat: 48.8566, lng: 2.3522 },
-  { person: 'Marcus T.', place: 'New York', amount: '$9,800', lat: 40.7128, lng: -74.006 },
-  { person: 'Wei L.', place: 'Singapore', amount: '$6,100', lat: 1.3521, lng: 103.8198 },
-  { person: 'Isabela R.', place: 'São Paulo', amount: '$3,450', lat: -23.5505, lng: -46.6333 },
-  { person: 'Amara K.', place: 'Nairobi', amount: '$2,900', lat: -1.2921, lng: 36.8219 },
+// Three predefined data sets — the globe swaps to the next one every full
+// rotation, so three laps show three different "snapshots" of the network
+// before looping back to the first.
+const DATA_SETS = [
+  {
+    events: [
+      ...CORE_EVENTS,
+      { name: 'Ubuntu Table', place: 'Cape Town', date: "Aug '25", lat: -33.9249, lng: 18.4241 },
+      { name: 'Casa Comal', place: 'Tulum', date: "May '26", lat: 20.2114, lng: -87.4654 },
+      { name: 'Beach Kitchen', place: 'Byron Bay', date: "Oct '25", lat: -28.6474, lng: 153.602 },
+      { name: 'Mesa Aberta', place: 'Lisbon', date: "Jun '26", lat: 38.7223, lng: -9.1393 },
+    ],
+    fundraise: [
+      { person: 'Camille B.', place: 'Paris', amount: '$4,200', lat: 48.8566, lng: 2.3522 },
+      { person: 'Marcus T.', place: 'New York', amount: '$9,800', lat: 40.7128, lng: -74.006 },
+      { person: 'Wei L.', place: 'Singapore', amount: '$6,100', lat: 1.3521, lng: 103.8198 },
+      { person: 'Isabela R.', place: 'São Paulo', amount: '$3,450', lat: -23.5505, lng: -46.6333 },
+      { person: 'Amara K.', place: 'Nairobi', amount: '$2,900', lat: -1.2921, lng: 36.8219 },
+    ],
+  },
+  {
+    events: [
+      ...CORE_EVENTS,
+      { name: 'Open Kitchen', place: 'Mexico City', date: "Jan '26", lat: 19.4326, lng: -99.1332 },
+      { name: 'Long Table', place: 'Berlin', date: "Sep '25", lat: 52.52, lng: 13.405 },
+      { name: 'Harbour Feast', place: 'Auckland', date: "Dec '25", lat: -36.8485, lng: 174.7633 },
+      { name: 'Spice Route', place: 'Marrakech', date: "Apr '26", lat: 31.6295, lng: -7.9811 },
+    ],
+    fundraise: [
+      { person: 'Sofia M.', place: 'Barcelona', amount: '$5,600', lat: 41.3851, lng: 2.1734 },
+      { person: 'Daniel K.', place: 'Toronto', amount: '$7,300', lat: 43.6532, lng: -79.3832 },
+      { person: 'Priya R.', place: 'Mumbai', amount: '$3,900', lat: 19.076, lng: 72.8777 },
+      { person: 'Lucas F.', place: 'Buenos Aires', amount: '$2,750', lat: -34.6037, lng: -58.3816 },
+      { person: 'Fatima N.', place: 'Lagos', amount: '$4,450', lat: 6.5244, lng: 3.3792 },
+    ],
+  },
+  {
+    events: [
+      ...CORE_EVENTS,
+      { name: 'Firelight Table', place: 'Reykjavik', date: "Jul '25", lat: 64.1466, lng: -21.9426 },
+      { name: 'Monsoon Kitchen', place: 'Kochi', date: "Jun '26", lat: 9.9312, lng: 76.2673 },
+      { name: 'Desert Feast', place: 'Dubai', date: "Feb '26", lat: 25.2048, lng: 55.2708 },
+      { name: 'River Table', place: 'Bangkok', date: "Oct '25", lat: 13.7563, lng: 100.5018 },
+    ],
+    fundraise: [
+      { person: 'Noor H.', place: 'Cairo', amount: '$6,800', lat: 30.0444, lng: 31.2357 },
+      { person: 'Ben O.', place: 'Melbourne', amount: '$8,200', lat: -37.8136, lng: 144.9631 },
+      { person: 'Elena P.', place: 'Athens', amount: '$3,300', lat: 37.9838, lng: 23.7275 },
+      { person: 'Kofi A.', place: 'Accra', amount: '$2,950', lat: 5.6037, lng: -0.187 },
+      { person: 'Mei C.', place: 'Shanghai', amount: '$5,150', lat: 31.2304, lng: 121.4737 },
+    ],
+  },
 ];
 
 const EVENT_COLOR = '#7A2436'; // --accent
@@ -50,6 +92,8 @@ const LABEL_DURATION = 2600; // ms a pill stays up once popped in
 const SPAWN_MIN = 900; // ms between pop-ins
 const SPAWN_MAX = 1700;
 const MIN_LABEL_DIST = 90; // CSS px — candidates too close to an active pill are skipped
+
+const SET_SWAP_FADE = 350; // ms — a touch longer than the CSS opacity transition (0.3s) so it finishes fading out first
 
 function makeLabel(point, kind) {
   const el = document.createElement('div');
@@ -101,14 +145,32 @@ async function initGlobe() {
   const rotation = [0, TILT];
   const rotatePoint = (p) => d3geo.geoRotation(rotation)(p);
 
-  const markers = [
-    ...EVENTS.map((p) => ({ ...p, kind: 'event', color: EVENT_COLOR, r: 4 })),
-    ...FUNDRAISE.map((p) => ({ ...p, kind: 'fundraise', color: FUNDRAISE_COLOR, r: 4 })),
-  ].map((m) => {
-    const el = makeLabel(m, m.kind);
-    stage.appendChild(el);
-    return { ...m, el };
-  });
+  function buildMarkers(setIndex) {
+    const { events, fundraise } = DATA_SETS[setIndex];
+    return [
+      ...events.map((p) => ({ ...p, kind: 'event', color: EVENT_COLOR, r: 4 })),
+      ...fundraise.map((p) => ({ ...p, kind: 'fundraise', color: FUNDRAISE_COLOR, r: 4 })),
+    ].map((m) => {
+      const el = makeLabel(m, m.kind);
+      stage.appendChild(el);
+      return { ...m, el, active: false, activatedAt: 0 };
+    });
+  }
+
+  let currentSet = 0;
+  let markers = buildMarkers(currentSet);
+  let transitioning = false;
+
+  function swapToNextSet() {
+    transitioning = true;
+    currentSet = (currentSet + 1) % DATA_SETS.length;
+    for (const m of markers) m.active = false;
+    setTimeout(() => {
+      for (const m of markers) stage.removeChild(m.el);
+      markers = buildMarkers(currentSet);
+      transitioning = false;
+    }, SET_SWAP_FADE);
+  }
 
   let dpr = Math.min(window.devicePixelRatio || 1, 2);
   let cssSize = stage.clientWidth;
@@ -139,11 +201,8 @@ async function initGlobe() {
     rotation[0] += dx * 0.25;
   });
 
-  for (const m of markers) {
-    m.active = false;
-    m.activatedAt = 0;
-  }
   let nextSpawnAt = 0;
+  let lapAccum = 0;
 
   let raf;
   function draw(now) {
@@ -191,7 +250,7 @@ async function initGlobe() {
     }
 
     // 3. pop a new pill in occasionally, skipping spots too close to one already up
-    if (now >= nextSpawnAt) {
+    if (!transitioning && now >= nextSpawnAt) {
       const activePoints = markers.filter((m) => m.active);
       if (activePoints.length < MAX_ACTIVE_LABELS) {
         const candidates = markers.filter((m) => {
@@ -241,7 +300,14 @@ async function initGlobe() {
       ctx.fill();
     }
 
-    if (pointerDown === null) rotation[0] += ROTATE_SPEED;
+    if (pointerDown === null) {
+      rotation[0] += ROTATE_SPEED;
+      lapAccum += ROTATE_SPEED;
+      if (lapAccum >= 360) {
+        lapAccum -= 360;
+        if (!transitioning) swapToNextSet();
+      }
+    }
     raf = requestAnimationFrame(draw);
   }
   raf = requestAnimationFrame(draw);
