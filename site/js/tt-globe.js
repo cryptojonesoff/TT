@@ -38,7 +38,7 @@ const COAST_COLOR = '#B8B0A2'; // light warm grey line-art, matches the referenc
 const RING_COLOR = 'rgba(0,0,0,0.16)';
 const LEADER_COLOR = 'rgba(0,0,0,0.18)';
 
-const ROTATE_SPEED = 0.14; // degrees per frame
+const ROTATE_SPEED = 0.3; // degrees per frame
 const TILT = -22;
 const LEADER_GAP = 22; // CSS px between a marker dot and its pill
 
