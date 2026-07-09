@@ -90,7 +90,7 @@ const LEADER_GAP = 22; // CSS px between a marker dot and its pill
 // "live ledger" pill cycling — dots stay put, but only a couple of pills
 // pop in/out at a time so nearby markers (e.g. the Siargao cluster) never
 // stack on top of each other.
-const MAX_ACTIVE_LABELS = 2;
+const MAX_ACTIVE_LABELS = 3;
 const LABEL_DURATION = 2600; // ms a pill stays up once popped in
 const SPAWN_MIN = 900; // ms between pop-ins
 const SPAWN_MAX = 1700;
@@ -287,38 +287,34 @@ async function initGlobe() {
       nextSpawnAt = now + SPAWN_MIN + Math.random() * (SPAWN_MAX - SPAWN_MIN);
     }
 
-    // 4. draw every visible dot, but only wire up leader line + pill for active ones
+    // 4. dot + leader line + pill only exist together, for active markers — nothing
+    // lingers on the sphere once a marker's turn ends, so the map never fills up.
     for (const m of markers) {
-      if (!m.visible) {
+      if (!m.visible || !m.active) {
         m.el.style.opacity = '0';
         continue;
       }
 
       const onLeft = m.x / dpr < cssSize / 2;
+      const anchorX = m.x + (onLeft ? LEADER_GAP : -LEADER_GAP) * dpr;
 
-      if (m.active) {
-        const anchorX = m.x + (onLeft ? LEADER_GAP : -LEADER_GAP) * dpr;
-        ctx.beginPath();
-        ctx.moveTo(m.x, m.y);
-        ctx.lineTo(anchorX, m.y);
-        ctx.strokeStyle = LEADER_COLOR;
-        ctx.lineWidth = 1 * dpr;
-        ctx.stroke();
-
-        m.el.style.left = anchorX / dpr + 'px';
-        m.el.style.top = m.y / dpr + 'px';
-        m.el.style.transformOrigin = onLeft ? 'left center' : 'right center';
-        m.el.style.transform = (onLeft ? 'translate(0, -50%)' : 'translate(-100%, -50%)') + ' scale(1)';
-        m.el.style.opacity = '1';
-      } else {
-        m.el.style.opacity = '0';
-        m.el.style.transform = (onLeft ? 'translate(0, -50%)' : 'translate(-100%, -50%)') + ' scale(0.85)';
-      }
+      ctx.beginPath();
+      ctx.moveTo(m.x, m.y);
+      ctx.lineTo(anchorX, m.y);
+      ctx.strokeStyle = LEADER_COLOR;
+      ctx.lineWidth = 1 * dpr;
+      ctx.stroke();
 
       ctx.beginPath();
       ctx.arc(m.x, m.y, m.r * dpr, 0, Math.PI * 2);
       ctx.fillStyle = m.color;
       ctx.fill();
+
+      m.el.style.left = anchorX / dpr + 'px';
+      m.el.style.top = m.y / dpr + 'px';
+      m.el.style.transformOrigin = onLeft ? 'left center' : 'right center';
+      m.el.style.transform = (onLeft ? 'translate(0, -50%)' : 'translate(-100%, -50%)') + ' scale(1)';
+      m.el.style.opacity = '1';
     }
 
     if (pointerDown === null) {

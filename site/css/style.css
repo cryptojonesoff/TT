@@ -648,6 +648,10 @@ section { padding: 80px 0; }
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--accent);
+  background: var(--bg-blush);
+  padding: 2px 6px;
+  border-radius: var(--radius-pill);
+  line-height: 1.4;
 }
 
 .globe-label .label-loc,
