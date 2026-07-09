@@ -42,6 +42,15 @@ const ROTATE_SPEED = 0.07; // degrees per frame
 const TILT = -22;
 const LEADER_GAP = 22; // CSS px between a marker dot and its pill
 
+// "live ledger" pill cycling — dots stay put, but only a couple of pills
+// pop in/out at a time so nearby markers (e.g. the Siargao cluster) never
+// stack on top of each other.
+const MAX_ACTIVE_LABELS = 2;
+const LABEL_DURATION = 2600; // ms a pill stays up once popped in
+const SPAWN_MIN = 900; // ms between pop-ins
+const SPAWN_MAX = 1700;
+const MIN_LABEL_DIST = 90; // CSS px — candidates too close to an active pill are skipped
+
 function makeLabel(point, kind) {
   const el = document.createElement('div');
   el.className = 'globe-label ' + kind;
@@ -130,8 +139,14 @@ async function initGlobe() {
     rotation[0] += dx * 0.25;
   });
 
+  for (const m of markers) {
+    m.active = false;
+    m.activatedAt = 0;
+  }
+  let nextSpawnAt = 0;
+
   let raf;
-  function draw() {
+  function draw(now) {
     const w = canvas.width;
     const h = canvas.height;
     const radius = (Math.min(w, h) / 2) * 0.92;
@@ -157,31 +172,73 @@ async function initGlobe() {
     ctx.lineWidth = 1 * dpr;
     ctx.stroke();
 
+    // 1. locate every marker currently on the visible hemisphere
     for (const m of markers) {
       const [rlng, rlat] = rotatePoint([m.lng, m.lat]);
-      const visible = Math.cos((rlat * Math.PI) / 180) * Math.cos((rlng * Math.PI) / 180) > 0;
-      m.el.style.opacity = visible ? '1' : '0';
-      if (!visible) continue;
-
+      m.visible = Math.cos((rlat * Math.PI) / 180) * Math.cos((rlng * Math.PI) / 180) > 0;
+      if (!m.visible) {
+        m.active = false;
+        continue;
+      }
       const [x, y] = projection([m.lng, m.lat]);
-      const onLeft = x / dpr < cssSize / 2;
-      const anchorX = x + (onLeft ? LEADER_GAP : -LEADER_GAP) * dpr;
+      m.x = x;
+      m.y = y;
+    }
+
+    // 2. expire pills that have been up long enough
+    for (const m of markers) {
+      if (m.active && now - m.activatedAt > LABEL_DURATION) m.active = false;
+    }
+
+    // 3. pop a new pill in occasionally, skipping spots too close to one already up
+    if (now >= nextSpawnAt) {
+      const activePoints = markers.filter((m) => m.active);
+      if (activePoints.length < MAX_ACTIVE_LABELS) {
+        const candidates = markers.filter((m) => {
+          if (!m.visible || m.active) return false;
+          return activePoints.every((a) => Math.hypot(a.x - m.x, a.y - m.y) / dpr > MIN_LABEL_DIST);
+        });
+        if (candidates.length > 0) {
+          const pick = candidates[Math.floor(Math.random() * candidates.length)];
+          pick.active = true;
+          pick.activatedAt = now;
+        }
+      }
+      nextSpawnAt = now + SPAWN_MIN + Math.random() * (SPAWN_MAX - SPAWN_MIN);
+    }
+
+    // 4. draw every visible dot, but only wire up leader line + pill for active ones
+    for (const m of markers) {
+      if (!m.visible) {
+        m.el.style.opacity = '0';
+        continue;
+      }
+
+      const onLeft = m.x / dpr < cssSize / 2;
+
+      if (m.active) {
+        const anchorX = m.x + (onLeft ? LEADER_GAP : -LEADER_GAP) * dpr;
+        ctx.beginPath();
+        ctx.moveTo(m.x, m.y);
+        ctx.lineTo(anchorX, m.y);
+        ctx.strokeStyle = LEADER_COLOR;
+        ctx.lineWidth = 1 * dpr;
+        ctx.stroke();
+
+        m.el.style.left = anchorX / dpr + 'px';
+        m.el.style.top = m.y / dpr + 'px';
+        m.el.style.transformOrigin = onLeft ? 'left center' : 'right center';
+        m.el.style.transform = (onLeft ? 'translate(0, -50%)' : 'translate(-100%, -50%)') + ' scale(1)';
+        m.el.style.opacity = '1';
+      } else {
+        m.el.style.opacity = '0';
+        m.el.style.transform = (onLeft ? 'translate(0, -50%)' : 'translate(-100%, -50%)') + ' scale(0.85)';
+      }
 
       ctx.beginPath();
-      ctx.moveTo(x, y);
-      ctx.lineTo(anchorX, y);
-      ctx.strokeStyle = LEADER_COLOR;
-      ctx.lineWidth = 1 * dpr;
-      ctx.stroke();
-
-      ctx.beginPath();
-      ctx.arc(x, y, m.r * dpr, 0, Math.PI * 2);
+      ctx.arc(m.x, m.y, m.r * dpr, 0, Math.PI * 2);
       ctx.fillStyle = m.color;
       ctx.fill();
-
-      m.el.style.left = anchorX / dpr + 'px';
-      m.el.style.top = y / dpr + 'px';
-      m.el.style.transform = onLeft ? 'translate(0, -50%)' : 'translate(-100%, -50%)';
     }
 
     if (pointerDown === null) rotation[0] += ROTATE_SPEED;
