@@ -14,72 +14,72 @@
 
 <main>
   <section class="missions-hero">
-    <div class="wrap">
+    <div class="siargao-map-wrap">
+      <svg viewBox="0 0 680 660" role="img">
+        <title>Animated map of Siargao island</title>
+        <desc>Stylized grey-line map of Siargao island with a soft dashed route looping slowly past Alegria Beach, Taktak Falls, Sugba Lagoon, Del Carmen, the airport, Magpopongko Rock Pools, Maasin River Bridge, Coconut View, Cloud 9, General Luna and Daku Island, marked with pink circles.</desc>
+
+        <path class="coast" d="M355,55 C375,75 390,95 395,120 C400,150 385,175 405,200 C425,225 445,240 455,270 C465,300 450,325 465,355 C480,385 500,400 505,425 C510,450 495,465 500,490 C505,515 490,535 465,545 C440,555 420,540 400,555 C380,570 370,590 345,595 C320,600 300,585 280,590 C255,595 235,580 225,555 C215,530 230,510 220,485 C210,460 190,450 195,425 C200,400 220,395 215,370 C210,345 190,335 195,310 C200,285 220,275 215,250 C210,225 230,215 235,190 C240,165 255,145 275,125 C295,105 315,80 335,65 C342,60 348,57 355,55 Z"/>
+
+        <path class="coast" d="M95,300 C110,290 130,295 140,305 C150,315 145,330 130,335 C115,340 100,335 95,320 C92,312 92,305 95,300 Z"/>
+        <path class="coast" d="M75,355 C85,350 98,353 100,362 C102,370 92,376 82,374 C74,372 72,362 75,355 Z"/>
+        <path class="coast" d="M515,565 C530,558 550,562 558,575 C565,588 555,600 538,600 C522,600 510,590 512,578 C513,573 513,568 515,565 Z"/>
+
+        <path id="routepath" class="route" d="M345,95 C330,120 310,140 300,170 C290,200 280,230 275,260 C270,290 260,310 250,335 C240,355 225,365 215,380 C230,395 250,400 270,395 C300,388 330,375 355,380 C380,385 400,375 415,365 C430,375 425,395 410,410 C395,425 375,435 360,450 C350,462 348,475 355,485 C365,495 380,492 395,485 C415,475 435,468 455,465 C470,462 480,468 485,478 C490,490 480,500 468,505 C455,510 445,505 440,490 C435,470 440,445 435,415 C430,380 420,340 405,300 C390,260 375,220 365,180 C358,150 350,120 345,95 Z"/>
+
+        <circle r="9" class="mk-glow">
+          <animateMotion dur="26s" repeatCount="indefinite" rotate="auto" calcMode="linear">
+            <mpath href="#routepath"/>
+          </animateMotion>
+        </circle>
+        <circle r="6" class="mk mk-live">
+          <animateMotion dur="26s" repeatCount="indefinite" rotate="auto" calcMode="linear">
+            <mpath href="#routepath"/>
+          </animateMotion>
+        </circle>
+
+        <circle cx="355" cy="90" r="6" class="mk"/>
+        <text class="lbl" x="368" y="88">Alegria Beach</text>
+
+        <circle cx="313" cy="128" r="6" class="mk"/>
+        <text class="lbl" x="215" y="126">Taktak Falls</text>
+
+        <circle cx="120" cy="300" r="6" class="mk"/>
+        <text class="lbl" x="20" y="288">Sugba Lagoon</text>
+
+        <circle cx="215" cy="382" r="6" class="mk"/>
+        <text class="lbl" x="118" y="398">Del Carmen</text>
+
+        <circle cx="270" cy="395" r="6" class="mk"/>
+        <text class="lbl" x="283" y="418">Aéroport</text>
+
+        <circle cx="415" cy="367" r="6" class="mk"/>
+        <text class="lbl" x="428" y="365">Magpopongko Rock Pools</text>
+
+        <circle cx="356" cy="452" r="6" class="mk"/>
+        <text class="lbl" x="369" y="450">Maasin River Bridge</text>
+
+        <circle cx="358" cy="478" r="6" class="mk"/>
+        <text class="lbl" x="371" y="497">Coconut view</text>
+
+        <circle cx="502" cy="463" r="6" class="mk"/>
+        <text class="lbl" x="515" y="461">Cloud 9</text>
+
+        <circle cx="466" cy="503" r="6" class="mk"/>
+        <text class="lbl" x="479" y="522">General Luna</text>
+
+        <circle cx="525" cy="578" r="6" class="mk"/>
+        <text class="lbl" x="538" y="582">Daku island</text>
+      </svg>
+    </div>
+    <div class="wrap content">
       <h1>Some of the world's most extraordinary recipes have never been written down.</h1>
       <p>We're travelling across Siargao to preserve the stories, traditions and people behind its food — before they're lost.</p>
       <p style="margin-bottom:24px;"><a href="https://framerusercontent.com/assets/ytL6UpQU1OmcFGIdF6PHpoagh8.pdf" target="_blank" rel="noopener" class="small" style="color:var(--text-tertiary);">↓ See how it works behind-the-scenes</a></p>
       <div class="cta-row">
         <a class="btn btn-accent" href="#public-ledger">FOLLOW THE MISSION</a>
       </div>
-    </div>
-  </section>
-
-  <section style="padding:0 0 56px;">
-    <div class="wrap">
-      <div class="siargao-map-wrap" style="margin-bottom:32px;">
-        <svg viewBox="0 0 680 660" role="img">
-          <title>Animated map of Siargao island</title>
-          <desc>Stylized grey-line map of Siargao island with a soft dashed route looping slowly past Alegria Beach, Taktak Falls, Sugba Lagoon, Del Carmen, the airport, Magpopongko Rock Pools, Maasin River Bridge, Coconut View, Cloud 9, General Luna and Daku Island, marked with pink circles.</desc>
-
-          <path class="coast" d="M355,55 C375,75 390,95 395,120 C400,150 385,175 405,200 C425,225 445,240 455,270 C465,300 450,325 465,355 C480,385 500,400 505,425 C510,450 495,465 500,490 C505,515 490,535 465,545 C440,555 420,540 400,555 C380,570 370,590 345,595 C320,600 300,585 280,590 C255,595 235,580 225,555 C215,530 230,510 220,485 C210,460 190,450 195,425 C200,400 220,395 215,370 C210,345 190,335 195,310 C200,285 220,275 215,250 C210,225 230,215 235,190 C240,165 255,145 275,125 C295,105 315,80 335,65 C342,60 348,57 355,55 Z"/>
-
-          <path class="coast" d="M95,300 C110,290 130,295 140,305 C150,315 145,330 130,335 C115,340 100,335 95,320 C92,312 92,305 95,300 Z"/>
-          <path class="coast" d="M75,355 C85,350 98,353 100,362 C102,370 92,376 82,374 C74,372 72,362 75,355 Z"/>
-          <path class="coast" d="M515,565 C530,558 550,562 558,575 C565,588 555,600 538,600 C522,600 510,590 512,578 C513,573 513,568 515,565 Z"/>
-
-          <path id="routepath" class="route" d="M345,95 C330,120 310,140 300,170 C290,200 280,230 275,260 C270,290 260,310 250,335 C240,355 225,365 215,380 C230,395 250,400 270,395 C300,388 330,375 355,380 C380,385 400,375 415,365 C430,375 425,395 410,410 C395,425 375,435 360,450 C350,462 348,475 355,485 C365,495 380,492 395,485 C415,475 435,468 455,465 C470,462 480,468 485,478 C490,490 480,500 468,505 C455,510 445,505 440,490 C435,470 440,445 435,415 C430,380 420,340 405,300 C390,260 375,220 365,180 C358,150 350,120 345,95 Z"/>
-
-          <circle r="6" class="mk">
-            <animateMotion dur="26s" repeatCount="indefinite" rotate="auto" calcMode="linear">
-              <mpath href="#routepath"/>
-            </animateMotion>
-          </circle>
-
-          <circle cx="355" cy="90" r="6" class="mk"/>
-          <text class="lbl" x="368" y="88">Alegria Beach</text>
-
-          <circle cx="313" cy="128" r="6" class="mk"/>
-          <text class="lbl" x="215" y="126">Taktak Falls</text>
-
-          <circle cx="120" cy="300" r="6" class="mk"/>
-          <text class="lbl" x="20" y="288">Sugba Lagoon</text>
-
-          <circle cx="215" cy="382" r="6" class="mk"/>
-          <text class="lbl" x="118" y="398">Del Carmen</text>
-
-          <circle cx="270" cy="395" r="6" class="mk"/>
-          <text class="lbl" x="283" y="418">Aéroport</text>
-
-          <circle cx="415" cy="367" r="6" class="mk"/>
-          <text class="lbl" x="428" y="365">Magpopongko Rock Pools</text>
-
-          <circle cx="356" cy="452" r="6" class="mk"/>
-          <text class="lbl" x="369" y="450">Maasin River Bridge</text>
-
-          <circle cx="358" cy="478" r="6" class="mk"/>
-          <text class="lbl" x="371" y="497">Coconut view</text>
-
-          <circle cx="502" cy="463" r="6" class="mk"/>
-          <text class="lbl" x="515" y="461">Cloud 9</text>
-
-          <circle cx="466" cy="503" r="6" class="mk"/>
-          <text class="lbl" x="479" y="522">General Luna</text>
-
-          <circle cx="525" cy="578" r="6" class="mk"/>
-          <text class="lbl" x="538" y="582">Daku island</text>
-        </svg>
-      </div>
-      <p class="wip-note" style="text-align:center; max-width:640px; margin:0 auto;">The animated route map above is an addition on top of the live site's own (static) map graphic — kept as a bonus enhancement. Everything else on this page matches the live site's current content.</p>
+      <p class="wip-note" style="text-align:center; max-width:640px; margin:32px auto 0;">The animated route map behind this section is an addition on top of the live site's own (static) map graphic — kept as a bonus enhancement. Everything else on this page matches the live site's current content.</p>
     </div>
   </section>
 
