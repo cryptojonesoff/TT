@@ -508,10 +508,11 @@ section { padding: 80px 0; }
 .ledger-stats .stat-label { font-size: 11px; letter-spacing: 0.05em; color: rgba(255,255,255,0.5); }
 
 /* ---------- Hero globe ----------
-   Line-art coastlines on a canvas (real geography via d3-geo, not a dot
-   texture) — the sphere itself is filled --bg-blush so it reads clearly
-   against the page's cream background without going to black. Floating
-   label pills for each marker are plain positioned DOM, not canvas text. */
+   Minimal line-art coastlines on a canvas (real geography via d3-geo, not
+   a dot texture) — near-white sphere, thin ring, no fill saturation, to
+   match the "operators" reference. Floating avatar pills for each visible
+   marker are plain positioned DOM with a canvas-drawn leader line back to
+   their dot. */
 
 .globe-stage {
   position: relative;
@@ -529,7 +530,7 @@ section { padding: 80px 0; }
   width: 60%;
   height: 12%;
   transform: translateX(-50%);
-  background: radial-gradient(closest-side, rgba(0,0,0,0.12), transparent 70%);
+  background: radial-gradient(closest-side, rgba(0,0,0,0.08), transparent 70%);
   z-index: -1;
 }
 
@@ -544,9 +545,9 @@ section { padding: 80px 0; }
   top: 0;
   left: 0;
   display: flex;
-  flex-direction: column;
-  gap: 1px;
-  padding: 6px 10px;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px 5px 5px;
   background: var(--bg-offwhite);
   border: 1px solid #ECE7DE;
   border-radius: var(--radius-pill);
@@ -556,25 +557,42 @@ section { padding: 80px 0; }
   transition: opacity 0.25s ease;
 }
 
-.globe-label .label-title {
+.globe-label .label-avatar {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-inverse);
+}
+
+.globe-label.event .label-avatar { background: var(--accent); }
+.globe-label.fundraise .label-avatar { background: #9C7A3E; }
+
+.globe-label .label-name {
   font-family: var(--font-sans);
   font-size: 11px;
   font-weight: 700;
   color: var(--text-primary);
 }
 
-.globe-label .label-sub {
+.globe-label .label-loc,
+.globe-label .label-amt {
   font-family: var(--font-ui-accent);
   font-size: 10px;
   color: var(--text-muted);
 }
 
-.globe-label.event .label-title { color: var(--accent); }
-
 @media (max-width: 720px) {
-  .globe-label { padding: 5px 8px; }
-  .globe-label .label-title { font-size: 10px; }
-  .globe-label .label-sub { font-size: 9px; }
+  .globe-label { padding: 4px 10px 4px 4px; gap: 6px; }
+  .globe-label .label-avatar { width: 18px; height: 18px; font-size: 9px; }
+  .globe-label .label-name { font-size: 10px; }
+  .globe-label .label-loc, .globe-label .label-amt { font-size: 9px; }
 }
 
 .globe-legend {

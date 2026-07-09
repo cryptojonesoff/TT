@@ -1,55 +1,63 @@
 // Rotating line-art globe for the homepage hero — real coastlines (not a
 // dot-matrix texture), drawn with d3-geo's orthographic projection onto a
-// 2D canvas, with floating info pills for each marker (matching the "live
-// network" reference). No build step on this site, so d3-geo / topojson /
-// the world outline are all loaded from a CDN at runtime.
+// 2D canvas. Compact avatar pills float next to each visible marker with a
+// thin leader line back to its dot, matching the "operators" reference.
+// No build step on this site, so d3-geo / topojson / the world outline are
+// all loaded from a CDN at runtime.
 //
 // All data below is placeholder — swap for real ones later, the shape
-// (name/date or name/amount + lat/lng) is meant to stay stable.
+// (name/place/date or person/place/amount + lat/lng) is meant to stay stable.
 
-// "event" — TT missions / IRL gatherings (independent from fundraise, no arcs between them)
+// "event" — TT missions / IRL initiatives (independent from fundraise, no arcs between them)
 const EVENTS = [
-  { name: 'Siargao Mission', date: 'Feb 15, 2026', lat: 9.86, lng: 126.05 },
-  { name: 'Byron Bay Mission', date: 'Nov 3, 2025', lat: -28.6474, lng: 153.602 },
-  { name: 'Lisbon Mission', date: 'Mar 22, 2026', lat: 38.7223, lng: -9.1393 },
-  { name: 'Cape Town Mission', date: 'Aug 9, 2025', lat: -33.9249, lng: 18.4241 },
-  { name: 'Tulum Mission', date: 'May 30, 2026', lat: 20.2114, lng: -87.4654 },
+  { name: 'SF&WF', place: 'Siargao', date: "Feb '26", lat: 9.86, lng: 126.05 },
+  { name: 'Siargao Loop', place: 'Byron Bay', date: "Nov '25", lat: -28.6474, lng: 153.602 },
+  { name: 'Family Style', place: 'Lisbon', date: "Mar '26", lat: 38.7223, lng: -9.1393 },
+  { name: 'Ubuntu Table', place: 'Cape Town', date: "Aug '25", lat: -33.9249, lng: 18.4241 },
+  { name: 'Casa Comal', place: 'Tulum', date: "May '26", lat: 20.2114, lng: -87.4654 },
 ];
 
 // "fundraise" — financial backers, spread across continents
 const FUNDRAISE = [
-  { person: 'Camille B.', location: 'Paris, France', amount: '$4,200', lat: 48.8566, lng: 2.3522 },
-  { person: 'Marcus T.', location: 'New York, USA', amount: '$9,800', lat: 40.7128, lng: -74.006 },
-  { person: 'Wei L.', location: 'Singapore', amount: '$6,100', lat: 1.3521, lng: 103.8198 },
-  { person: 'Isabela R.', location: 'São Paulo, Brazil', amount: '$3,450', lat: -23.5505, lng: -46.6333 },
+  { person: 'Camille B.', place: 'Paris', amount: '$4,200', lat: 48.8566, lng: 2.3522 },
+  { person: 'Marcus T.', place: 'New York', amount: '$9,800', lat: 40.7128, lng: -74.006 },
+  { person: 'Wei L.', place: 'Singapore', amount: '$6,100', lat: 1.3521, lng: 103.8198 },
+  { person: 'Isabela R.', place: 'São Paulo', amount: '$3,450', lat: -23.5505, lng: -46.6333 },
 ];
 
 const EVENT_COLOR = '#7A2436'; // --accent
-const FUNDRAISE_COLOR = '#9C7A3E'; // deeper gold, reads against the blush sphere
+const FUNDRAISE_COLOR = '#9C7A3E'; // deeper gold
 
-const SPHERE_COLOR = '#E8DBD8'; // --bg-blush — pops off the cream page without going to black
-const GRATICULE_COLOR = 'rgba(0,0,0,0.05)';
-const COAST_COLOR = '#8A8880'; // matches --map-coast used on the Siargao route map
-const RING_COLOR = 'rgba(122,36,54,0.35)'; // --accent, low opacity
+const SPHERE_COLOR = '#FBF9F5'; // barely off-white — a whisper of warmth, not a filled shape
+const COAST_COLOR = '#B8B0A2'; // light warm grey line-art, matches the reference's thin coastlines
+const RING_COLOR = 'rgba(0,0,0,0.16)';
+const LEADER_COLOR = 'rgba(0,0,0,0.18)';
 
 const ROTATE_SPEED = 0.07; // degrees per frame
 const TILT = -22;
+const LEADER_GAP = 22; // CSS px between a marker dot and its pill
 
 function makeLabel(point, kind) {
   const el = document.createElement('div');
   el.className = 'globe-label ' + kind;
-  const title = document.createElement('span');
-  title.className = 'label-title';
-  const sub = document.createElement('span');
-  sub.className = 'label-sub';
-  if (kind === 'event') {
-    title.textContent = point.name;
-    sub.textContent = point.date;
-  } else {
-    title.textContent = point.person;
-    sub.textContent = point.location + ' — pledged ' + point.amount;
-  }
-  el.append(title, sub);
+
+  const avatar = document.createElement('span');
+  avatar.className = 'label-avatar';
+  avatar.textContent = kind === 'fundraise' ? point.person.charAt(0) : '';
+
+  const name = document.createElement('span');
+  name.className = 'label-name';
+  name.textContent = kind === 'event' ? point.name : point.person;
+
+  const place = document.createElement('span');
+  place.className = 'label-loc';
+  place.textContent = point.place;
+
+  const value = document.createElement('span');
+  value.className = 'label-amt';
+  value.textContent = kind === 'event' ? point.date : point.amount;
+
+  el.append(avatar, name, place, value);
   el.style.opacity = '0';
   return el;
 }
@@ -73,7 +81,6 @@ async function initGlobe() {
   }
 
   const land = topojson.feature(world, world.objects.land);
-  const graticule = d3geo.geoGraticule10();
 
   const projection = d3geo.geoOrthographic().clipAngle(90);
   const path = d3geo.geoPath(projection, ctx);
@@ -81,8 +88,8 @@ async function initGlobe() {
   const rotatePoint = (p) => d3geo.geoRotation(rotation)(p);
 
   const markers = [
-    ...EVENTS.map((p) => ({ ...p, kind: 'event', color: EVENT_COLOR, r: 4.5 })),
-    ...FUNDRAISE.map((p) => ({ ...p, kind: 'fundraise', color: FUNDRAISE_COLOR, r: 3.5 })),
+    ...EVENTS.map((p) => ({ ...p, kind: 'event', color: EVENT_COLOR, r: 4 })),
+    ...FUNDRAISE.map((p) => ({ ...p, kind: 'fundraise', color: FUNDRAISE_COLOR, r: 4 })),
   ].map((m) => {
     const el = makeLabel(m, m.kind);
     stage.appendChild(el);
@@ -133,22 +140,16 @@ async function initGlobe() {
     ctx.fill();
 
     ctx.beginPath();
-    path(graticule);
-    ctx.strokeStyle = GRATICULE_COLOR;
-    ctx.lineWidth = 1 * dpr;
-    ctx.stroke();
-
-    ctx.beginPath();
     path(land);
     ctx.strokeStyle = COAST_COLOR;
-    ctx.lineWidth = 1.3 * dpr;
+    ctx.lineWidth = 1 * dpr;
     ctx.lineJoin = 'round';
     ctx.stroke();
 
     ctx.beginPath();
     path({ type: 'Sphere' });
     ctx.strokeStyle = RING_COLOR;
-    ctx.lineWidth = 1.5 * dpr;
+    ctx.lineWidth = 1 * dpr;
     ctx.stroke();
 
     for (const m of markers) {
@@ -158,17 +159,24 @@ async function initGlobe() {
       if (!visible) continue;
 
       const [x, y] = projection([m.lng, m.lat]);
+      const onLeft = x / dpr < cssSize / 2;
+      const anchorX = x + (onLeft ? LEADER_GAP : -LEADER_GAP) * dpr;
+
+      ctx.beginPath();
+      ctx.moveTo(x, y);
+      ctx.lineTo(anchorX, y);
+      ctx.strokeStyle = LEADER_COLOR;
+      ctx.lineWidth = 1 * dpr;
+      ctx.stroke();
 
       ctx.beginPath();
       ctx.arc(x, y, m.r * dpr, 0, Math.PI * 2);
       ctx.fillStyle = m.color;
       ctx.fill();
 
-      const cx = x / dpr;
-      const cy = y / dpr;
-      m.el.style.left = cx + 'px';
-      m.el.style.top = cy + 'px';
-      m.el.style.transform = cx < cssSize / 2 ? 'translate(12px, -50%)' : 'translate(calc(-100% - 12px), -50%)';
+      m.el.style.left = anchorX / dpr + 'px';
+      m.el.style.top = y / dpr + 'px';
+      m.el.style.transform = onLeft ? 'translate(0, -50%)' : 'translate(-100%, -50%)';
     }
 
     if (pointerDown === null) rotation[0] += ROTATE_SPEED;
