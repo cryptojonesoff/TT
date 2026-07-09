@@ -508,13 +508,15 @@ section { padding: 80px 0; }
 .ledger-stats .stat-label { font-size: 11px; letter-spacing: 0.05em; color: rgba(255,255,255,0.5); }
 
 /* ---------- Hero globe ----------
-   cobe's canvas is alpha-transparent outside the sphere itself, so the
-   globe floats directly on the page's own background — no boxed panel. */
+   Line-art coastlines on a canvas (real geography via d3-geo, not a dot
+   texture) — the sphere itself is filled --bg-blush so it reads clearly
+   against the page's cream background without going to black. Floating
+   label pills for each marker are plain positioned DOM, not canvas text. */
 
 .globe-stage {
   position: relative;
   width: 100%;
-  max-width: 520px;
+  max-width: 560px;
   aspect-ratio: 1;
   margin: 0 auto;
 }
@@ -523,11 +525,11 @@ section { padding: 80px 0; }
   content: "";
   position: absolute;
   left: 50%;
-  bottom: 4%;
+  bottom: 2%;
   width: 60%;
   height: 12%;
   transform: translateX(-50%);
-  background: radial-gradient(closest-side, rgba(0,0,0,0.14), transparent 70%);
+  background: radial-gradient(closest-side, rgba(0,0,0,0.12), transparent 70%);
   z-index: -1;
 }
 
@@ -537,11 +539,49 @@ section { padding: 80px 0; }
   cursor: grab;
 }
 
+.globe-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: 6px 10px;
+  background: var(--bg-offwhite);
+  border: 1px solid #ECE7DE;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  white-space: nowrap;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.globe-label .label-title {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.globe-label .label-sub {
+  font-family: var(--font-ui-accent);
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+.globe-label.event .label-title { color: var(--accent); }
+
+@media (max-width: 720px) {
+  .globe-label { padding: 5px 8px; }
+  .globe-label .label-title { font-size: 10px; }
+  .globe-label .label-sub { font-size: 9px; }
+}
+
 .globe-legend {
   display: flex;
   justify-content: center;
   gap: 20px;
-  margin-top: 20px;
+  margin-top: 24px;
   font-size: 11px;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -553,7 +593,7 @@ section { padding: 80px 0; }
 .globe-legend i { width: 6px; height: 6px; border-radius: 50%; display: inline-block; }
 
 .globe-legend .dot-event { background: var(--accent); }
-.globe-legend .dot-fundraise { background: #B8935A; }
+.globe-legend .dot-fundraise { background: #9C7A3E; }
 
 @media (max-width: 720px) {
   .globe-stage { max-width: 340px; }
