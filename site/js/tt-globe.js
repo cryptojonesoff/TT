@@ -75,8 +75,19 @@ const DATA_SETS = [
   },
 ];
 
-const EVENT_COLOR = '#7A2436'; // --accent
-const FUNDRAISE_COLOR = '#9C7A3E'; // deeper gold
+// One distinct, warm/earthy color per category — keeps every category tellable
+// apart at a glance (dot, avatar, and legend swatch all share it) without
+// reaching for saturated/cool hues that would clash with the site's palette.
+const CATEGORY_COLORS = {
+  Mission: '#7A2436', // --accent
+  Salon: '#6B4A6E',
+  Experience: '#B5652F',
+  Adventure: '#8C5A2B',
+  Festival: '#B08A2E',
+  Product: '#56694A',
+  'Field Research': '#46626B',
+  Participation: '#9C7A3E',
+};
 
 const SPHERE_COLOR = '#FBF9F5'; // barely off-white — a whisper of warmth, not a filled shape
 const COAST_COLOR = '#B8B0A2'; // light warm grey line-art, matches the reference's thin coastlines
@@ -98,12 +109,13 @@ const MIN_LABEL_DIST = 90; // CSS px — candidates too close to an active pill 
 
 const SET_SWAP_FADE = 350; // ms — a touch longer than the CSS opacity transition (0.3s) so it finishes fading out first
 
-function makeLabel(point, kind) {
+function makeLabel(point, kind, color) {
   const el = document.createElement('div');
   el.className = 'globe-label ' + kind;
 
   const avatar = document.createElement('span');
   avatar.className = 'label-avatar';
+  avatar.style.background = color;
   avatar.textContent = kind === 'fundraise' ? point.person.charAt(0) : '';
 
   const name = document.createElement('span');
@@ -116,6 +128,7 @@ function makeLabel(point, kind) {
   if (kind === 'event') {
     const type = document.createElement('span');
     type.className = 'label-type';
+    type.style.color = color;
     type.textContent = point.type;
     row1.append(type);
   }
@@ -169,10 +182,10 @@ async function initGlobe() {
   function buildMarkers(setIndex) {
     const { events, fundraise } = DATA_SETS[setIndex];
     return [
-      ...events.map((p) => ({ ...p, kind: 'event', color: EVENT_COLOR, r: 4 })),
-      ...fundraise.map((p) => ({ ...p, kind: 'fundraise', color: FUNDRAISE_COLOR, r: 4 })),
+      ...events.map((p) => ({ ...p, kind: 'event', color: CATEGORY_COLORS[p.type] || CATEGORY_COLORS.Mission, r: 4 })),
+      ...fundraise.map((p) => ({ ...p, kind: 'fundraise', color: CATEGORY_COLORS.Participation, r: 4 })),
     ].map((m) => {
-      const el = makeLabel(m, m.kind);
+      const el = makeLabel(m, m.kind, m.color);
       stage.appendChild(el);
       return { ...m, el, active: false, activatedAt: 0 };
     });

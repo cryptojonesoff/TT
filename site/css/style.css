@@ -619,8 +619,7 @@ section { padding: 80px 0; }
   color: var(--text-inverse);
 }
 
-.globe-label.event .label-avatar { background: var(--accent); }
-.globe-label.fundraise .label-avatar { background: #9C7A3E; }
+/* avatar background is set inline per-marker (category color) via JS */
 
 .globe-label .label-text {
   display: flex;
@@ -643,15 +642,11 @@ section { padding: 80px 0; }
 
 .globe-label .label-type {
   font-family: var(--font-ui-accent);
-  font-size: 8px;
+  font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--accent);
-  background: var(--bg-blush);
-  padding: 2px 6px;
-  border-radius: var(--radius-pill);
-  line-height: 1.4;
+  /* color is set inline per-marker (category color) via JS */
 }
 
 .globe-label .label-loc,
@@ -671,21 +666,20 @@ section { padding: 80px 0; }
 
 .globe-legend {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  gap: 20px;
+  column-gap: 18px;
+  row-gap: 10px;
   margin-top: 24px;
-  font-size: 11px;
-  letter-spacing: 0.05em;
+  font-size: 10px;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--text-muted);
 }
 
 .globe-legend span { display: inline-flex; align-items: center; gap: 6px; }
 
-.globe-legend i { width: 6px; height: 6px; border-radius: 50%; display: inline-block; }
-
-.globe-legend .dot-event { background: var(--accent); }
-.globe-legend .dot-fundraise { background: #9C7A3E; }
+.globe-legend i { width: 6px; height: 6px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
 
 @media (max-width: 720px) {
   .globe-stage { max-width: 340px; }
