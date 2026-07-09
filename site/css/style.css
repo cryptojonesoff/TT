@@ -207,6 +207,9 @@ section { padding: 80px 0; }
 
 .philosophy-band { background: var(--bg-cream); padding: 56px 0 1px; }
 .philosophy-band .grid-4, .philosophy-band .grid-5 { margin-top: 0; }
+.philosophy-band .grid-4 { border-bottom: 2px solid #000; }
+.philosophy-band .grid-4 .pillar { border-left: 2px solid #000; }
+.philosophy-band .grid-4 .pillar:first-child { border-left: none; }
 .section-black { background: var(--black-section); color: var(--text-inverse); }
 
 /* Shared photographic treatment — applied to every hero/card image sitewide so
