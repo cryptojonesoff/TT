@@ -15,9 +15,9 @@
 // spread of mission formats: Festival, Field Research, Product, Salon, Experience, Adventure,
 // and general Mission.
 const CORE_EVENTS = [
-  { name: 'SF&WF', place: 'Siargao', date: "Feb '26", lat: 9.86, lng: 126.05 }, // Festival
-  { name: 'Siargao Loop', place: 'Siargao', date: "Nov '25", lat: 9.78, lng: 126.02 }, // Field Research
-  { name: 'Family Style', place: 'Siargao', date: "Mar '26", lat: 9.93, lng: 126.1 }, // Product (cookbook)
+  { name: 'SF&WF', type: 'Festival', place: 'Siargao', date: "Feb '26", lat: 9.86, lng: 126.05 },
+  { name: 'Siargao Loop', type: 'Field Research', place: 'Siargao', date: "Nov '25", lat: 9.78, lng: 126.02 },
+  { name: 'Family Style', type: 'Product', place: 'Siargao', date: "Mar '26", lat: 9.93, lng: 126.1 },
 ];
 
 // Three predefined data sets — the globe swaps to the next one every full
@@ -28,10 +28,10 @@ const DATA_SETS = [
   {
     events: [
       ...CORE_EVENTS,
-      { name: 'Reef Trail', place: 'Byron Bay', date: "Oct '25", lat: -28.6474, lng: 153.602 }, // Adventure
-      { name: 'Ubuntu Salon', place: 'Cape Town', date: "Aug '25", lat: -33.9249, lng: 18.4241 }, // Salon
-      { name: 'Comal Nights', place: 'Tulum', date: "May '26", lat: 20.2114, lng: -87.4654 }, // Experience
-      { name: 'Mesa Aberta', place: 'Lisbon', date: "Jun '26", lat: 38.7223, lng: -9.1393 }, // Mission
+      { name: 'Reef Trail', type: 'Adventure', place: 'Byron Bay', date: "Oct '25", lat: -28.6474, lng: 153.602 },
+      { name: 'Ubuntu Salon', type: 'Salon', place: 'Cape Town', date: "Aug '25", lat: -33.9249, lng: 18.4241 },
+      { name: 'Comal Nights', type: 'Experience', place: 'Tulum', date: "May '26", lat: 20.2114, lng: -87.4654 },
+      { name: 'Mesa Aberta', type: 'Mission', place: 'Lisbon', date: "Jun '26", lat: 38.7223, lng: -9.1393 },
     ],
     fundraise: [
       { person: 'Camille B.', place: 'Paris', amount: '$4,200', lat: 48.8566, lng: 2.3522 },
@@ -44,10 +44,10 @@ const DATA_SETS = [
   {
     events: [
       ...CORE_EVENTS,
-      { name: 'Open Kitchen', place: 'Mexico City', date: "Jan '26", lat: 19.4326, lng: -99.1332 }, // Adventure
-      { name: 'Berlin Salon', place: 'Berlin', date: "Sep '25", lat: 52.52, lng: 13.405 }, // Salon
-      { name: 'Harbour Feast', place: 'Auckland', date: "Dec '25", lat: -36.8485, lng: 174.7633 }, // Experience
-      { name: 'Spice Route', place: 'Marrakech', date: "Apr '26", lat: 31.6295, lng: -7.9811 }, // Mission
+      { name: 'Open Kitchen', type: 'Adventure', place: 'Mexico City', date: "Jan '26", lat: 19.4326, lng: -99.1332 },
+      { name: 'Berlin Salon', type: 'Salon', place: 'Berlin', date: "Sep '25", lat: 52.52, lng: 13.405 },
+      { name: 'Harbour Feast', type: 'Experience', place: 'Auckland', date: "Dec '25", lat: -36.8485, lng: 174.7633 },
+      { name: 'Spice Route', type: 'Mission', place: 'Marrakech', date: "Apr '26", lat: 31.6295, lng: -7.9811 },
     ],
     fundraise: [
       { person: 'Sofia M.', place: 'Barcelona', amount: '$5,600', lat: 41.3851, lng: 2.1734 },
@@ -60,10 +60,10 @@ const DATA_SETS = [
   {
     events: [
       ...CORE_EVENTS,
-      { name: 'Monsoon Trail', place: 'Kochi', date: "Jun '26", lat: 9.9312, lng: 76.2673 }, // Adventure
-      { name: 'Reykjavik Salon', place: 'Reykjavik', date: "Jul '25", lat: 64.1466, lng: -21.9426 }, // Salon
-      { name: 'Desert Feast', place: 'Dubai', date: "Feb '26", lat: 25.2048, lng: 55.2708 }, // Experience
-      { name: 'River Table', place: 'Bangkok', date: "Oct '25", lat: 13.7563, lng: 100.5018 }, // Mission
+      { name: 'Monsoon Trail', type: 'Adventure', place: 'Kochi', date: "Jun '26", lat: 9.9312, lng: 76.2673 },
+      { name: 'Reykjavik Salon', type: 'Salon', place: 'Reykjavik', date: "Jul '25", lat: 64.1466, lng: -21.9426 },
+      { name: 'Desert Feast', type: 'Experience', place: 'Dubai', date: "Feb '26", lat: 25.2048, lng: 55.2708 },
+      { name: 'River Table', type: 'Mission', place: 'Bangkok', date: "Oct '25", lat: 13.7563, lng: 100.5018 },
     ],
     fundraise: [
       { person: 'Noor H.', place: 'Cairo', amount: '$6,800', lat: 30.0444, lng: 31.2357 },
@@ -110,6 +110,16 @@ function makeLabel(point, kind) {
   name.className = 'label-name';
   name.textContent = kind === 'event' ? point.name : point.person;
 
+  const row1 = document.createElement('span');
+  row1.className = 'label-row';
+  row1.append(name);
+  if (kind === 'event') {
+    const type = document.createElement('span');
+    type.className = 'label-type';
+    type.textContent = point.type;
+    row1.append(type);
+  }
+
   const place = document.createElement('span');
   place.className = 'label-loc';
   place.textContent = point.place;
@@ -118,7 +128,15 @@ function makeLabel(point, kind) {
   value.className = 'label-amt';
   value.textContent = kind === 'event' ? point.date : point.amount;
 
-  el.append(avatar, name, place, value);
+  const row2 = document.createElement('span');
+  row2.className = 'label-row';
+  row2.append(place, value);
+
+  const text = document.createElement('span');
+  text.className = 'label-text';
+  text.append(row1, row2);
+
+  el.append(avatar, text);
   el.style.opacity = '0';
   return el;
 }

@@ -547,7 +547,7 @@ section { padding: 80px 0; }
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 5px 12px 5px 5px;
+  padding: 6px 14px 6px 6px;
   background: var(--bg-offwhite);
   border: 1px solid #ECE7DE;
   border-radius: var(--radius-pill);
@@ -559,8 +559,8 @@ section { padding: 80px 0; }
 
 .globe-label .label-avatar {
   flex-shrink: 0;
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -574,11 +574,32 @@ section { padding: 80px 0; }
 .globe-label.event .label-avatar { background: var(--accent); }
 .globe-label.fundraise .label-avatar { background: #9C7A3E; }
 
+.globe-label .label-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.globe-label .label-row {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
 .globe-label .label-name {
   font-family: var(--font-sans);
   font-size: 11px;
   font-weight: 700;
   color: var(--text-primary);
+}
+
+.globe-label .label-type {
+  font-family: var(--font-ui-accent);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent);
 }
 
 .globe-label .label-loc,
@@ -589,9 +610,10 @@ section { padding: 80px 0; }
 }
 
 @media (max-width: 720px) {
-  .globe-label { padding: 4px 10px 4px 4px; gap: 6px; }
-  .globe-label .label-avatar { width: 18px; height: 18px; font-size: 9px; }
+  .globe-label { padding: 5px 12px 5px 5px; gap: 6px; }
+  .globe-label .label-avatar { width: 20px; height: 20px; font-size: 9px; }
   .globe-label .label-name { font-size: 10px; }
+  .globe-label .label-type { font-size: 7px; }
   .globe-label .label-loc, .globe-label .label-amt { font-size: 9px; }
 }
 
