@@ -9,12 +9,16 @@
 // (name/place/date or person/place/amount + lat/lng) is meant to stay stable.
 
 // "event" — TT missions / IRL initiatives (independent from fundraise, no arcs between them)
+// SF&WF, Siargao Loop and Family Style are all real TT initiatives based out of Siargao —
+// kept at distinct nearby points on the island rather than one stacked marker.
 const EVENTS = [
   { name: 'SF&WF', place: 'Siargao', date: "Feb '26", lat: 9.86, lng: 126.05 },
-  { name: 'Siargao Loop', place: 'Byron Bay', date: "Nov '25", lat: -28.6474, lng: 153.602 },
-  { name: 'Family Style', place: 'Lisbon', date: "Mar '26", lat: 38.7223, lng: -9.1393 },
+  { name: 'Siargao Loop', place: 'Siargao', date: "Nov '25", lat: 9.78, lng: 126.02 },
+  { name: 'Family Style', place: 'Siargao', date: "Mar '26", lat: 9.93, lng: 126.1 },
   { name: 'Ubuntu Table', place: 'Cape Town', date: "Aug '25", lat: -33.9249, lng: 18.4241 },
   { name: 'Casa Comal', place: 'Tulum', date: "May '26", lat: 20.2114, lng: -87.4654 },
+  { name: 'Beach Kitchen', place: 'Byron Bay', date: "Oct '25", lat: -28.6474, lng: 153.602 },
+  { name: 'Mesa Aberta', place: 'Lisbon', date: "Jun '26", lat: 38.7223, lng: -9.1393 },
 ];
 
 // "fundraise" — financial backers, spread across continents
@@ -23,6 +27,7 @@ const FUNDRAISE = [
   { person: 'Marcus T.', place: 'New York', amount: '$9,800', lat: 40.7128, lng: -74.006 },
   { person: 'Wei L.', place: 'Singapore', amount: '$6,100', lat: 1.3521, lng: 103.8198 },
   { person: 'Isabela R.', place: 'São Paulo', amount: '$3,450', lat: -23.5505, lng: -46.6333 },
+  { person: 'Amara K.', place: 'Nairobi', amount: '$2,900', lat: -1.2921, lng: 36.8219 },
 ];
 
 const EVENT_COLOR = '#7A2436'; // --accent
