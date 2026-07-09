@@ -204,6 +204,9 @@ input::placeholder { color: var(--text-faint); }
 section { padding: 80px 0; }
 
 .section-cream { background: var(--bg-cream); }
+
+.philosophy-band { background: var(--bg-cream); padding: 56px 0 1px; }
+.philosophy-band .grid-4, .philosophy-band .grid-5 { margin-top: 0; }
 .section-black { background: var(--black-section); color: var(--text-inverse); }
 
 /* Shared photographic treatment — applied to every hero/card image sitewide so
@@ -246,9 +249,14 @@ section { padding: 80px 0; }
 .sponsor-block {
   display: inline-flex;
   align-items: center;
-  padding: 32px 40px;
-  border: 1px solid #EEE;
   margin-bottom: 64px;
+}
+
+.sponsor-heading {
+  font-size: 14px;
+  font-weight: 500;
+  text-align: left;
+  margin: 48px 0 24px;
 }
 
 .photo-duo, .photo-grid-2col {

@@ -15,15 +15,12 @@
 
   document.querySelectorAll('[data-include]').forEach(include);
 
-  // Fades/slides elements in the first time they scroll into view.
+  // Fades elements in and out as they scroll into and out of view.
   var revealEls = document.querySelectorAll('.reveal-on-scroll');
   if ('IntersectionObserver' in window) {
     var observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        }
+        entry.target.classList.toggle('is-visible', entry.isIntersecting);
       });
     }, { threshold: 0.3 });
     revealEls.forEach(function (el) { observer.observe(el); });
