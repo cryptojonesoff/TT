@@ -134,10 +134,10 @@ img { max-width: 100%; display: block; }
   justify-content: center;
   height: 40px;
   padding: 0 24px;
-  border-radius: var(--radius);
+  border-radius: 0;
   border: none;
   font-family: var(--font-sans);
-  font-size: 14px;
+  font-size: 12px;
   cursor: pointer;
   text-align: center;
 }
@@ -569,8 +569,8 @@ section { padding: 80px 0; }
 
 .missions-hero { position: relative; text-align: center; padding: 100px 0 64px; overflow: hidden; }
 .missions-hero .content { position: relative; z-index: 1; }
-.missions-hero h1 { font-size: 32px; max-width: 700px; margin: 0 auto 24px; color: var(--accent); }
-.missions-hero p { max-width: 500px; margin: 0 auto 24px; color: var(--text-tertiary); }
+.missions-hero h1 { font-size: 35px; font-weight: 400; line-height: 1.2; max-width: 700px; margin: 0 auto 24px; color: rgba(122, 36, 54, 0.8); }
+.missions-hero p { max-width: 500px; margin: 0 auto 24px; font-size: 14px; color: rgba(0, 0, 0, 0.8); }
 .missions-hero .cta-row { display: flex; justify-content: center; gap: 16px; }
 
 @media (max-width: 900px) {
@@ -605,7 +605,7 @@ section { padding: 80px 0; }
   align-items: center;
 }
 .split-2col .caption { font-size: 13px; color: var(--accent); font-weight: 600; letter-spacing: 0.02em; }
-.split-2col .statement { font-size: 20px; line-height: 1.5; }
+.split-2col .statement { font-size: 20px; font-weight: 400; line-height: 1.5; color: rgba(0, 0, 0, 0.8); }
 @media (max-width: 720px) {
   .split-2col { grid-template-columns: 1fr; gap: 16px; }
 }
