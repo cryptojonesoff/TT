@@ -649,6 +649,21 @@ section { padding: 80px 0; }
 .ledger-stats .stat-value { font-size: 32px; margin-bottom: 8px; }
 .ledger-stats .stat-label { font-size: 11px; letter-spacing: 0.05em; color: rgba(255,255,255,0.6); }
 
+/* Public Ledger stats as two stacked columns: labels left, values right */
+.ledger-stats2 { display: flex; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
+.ledger-stats2-labels, .ledger-stats2-values { display: flex; flex-direction: column; gap: 24px; }
+.ledger-stats2 .stat-label { font-size: 11px; letter-spacing: 0.05em; color: rgba(255,255,255,0.6); }
+.ledger-stats2 .stat-value { font-size: 24px; color: rgba(255,255,255,0.9); }
+
+/* Road to Siargao Loop — three tiered step blocks */
+.mission-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
+.mission-steps > div { padding: 24px; color: var(--text-inverse); }
+.mission-steps h4 { font-size: 13px; font-weight: 700; margin-bottom: 8px; }
+.mission-steps p { font-size: 13px; color: rgba(255,255,255,0.85); }
+@media (max-width: 720px) {
+  .mission-steps { grid-template-columns: 1fr; }
+}
+
 .ledger-dark {
   background: var(--black-section);
   color: var(--text-inverse);
