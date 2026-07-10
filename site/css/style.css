@@ -567,7 +567,7 @@ section { padding: 80px 0; }
 
 /* ---------- Missions page ---------- */
 
-.missions-hero { position: relative; text-align: center; padding: 100px 0 64px; overflow: hidden; }
+.missions-hero { position: relative; z-index: 1; text-align: center; padding: 100px 0 64px; }
 .missions-hero .content { position: relative; z-index: 1; }
 .missions-hero h1 { font-size: 35px; font-weight: 400; line-height: 1.2; max-width: 700px; margin: 0 auto 24px; color: rgba(122, 36, 54, 0.8); }
 .missions-hero p { max-width: 500px; margin: 0 auto 24px; font-size: 14px; color: rgba(0, 0, 0, 0.8); }
@@ -597,17 +597,18 @@ section { padding: 80px 0; }
 .profile-card p.role { font-size: 12px; color: var(--text-muted); margin-bottom: 12px; }
 .profile-card p.quote { font-size: 13px; color: var(--text-tertiary); font-style: italic; margin-bottom: 16px; }
 
-/* Two-column split: short caption left, larger statement right (Food isn't just food. / It's memory...) */
+/* Two-column split: short caption left, larger statement pushed to the right (Food isn't just food. / It's memory...) */
 .split-2col {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 40px;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
+  gap: 40px;
 }
-.split-2col .caption { font-size: 13px; color: var(--accent); font-weight: 600; letter-spacing: 0.02em; }
-.split-2col .statement { font-size: 20px; font-weight: 400; line-height: 1.5; color: rgba(0, 0, 0, 0.8); }
+.split-2col .caption { font-size: 10px; color: rgba(122, 36, 54, 0.8); font-weight: 400; letter-spacing: 0.02em; }
+.split-2col .statement { font-size: 20px; font-weight: 400; line-height: 1.5; color: rgba(0, 0, 0, 0.8); text-align: right; }
 @media (max-width: 720px) {
-  .split-2col { grid-template-columns: 1fr; gap: 16px; }
+  .split-2col { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .split-2col .statement { text-align: left; }
 }
 
 /* Labeled category list — EXPERIENCE / STORY / COOKBOOK / PARTNER / VOLUNTEER, etc. */
