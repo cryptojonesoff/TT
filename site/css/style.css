@@ -521,6 +521,14 @@ section { padding: 80px 0; }
 
 .article-meta { font-size: 12px; color: var(--text-muted); margin-bottom: 24px; }
 
+.article-layout { display: grid; grid-template-columns: 200px 1fr; gap: 80px; }
+.article-sidebar p { font-size: 10px; color: rgba(0,0,0,0.6); margin-bottom: 4px; }
+.article-sidebar p.eyebrow-label { color: var(--accent); }
+.article-lead { font-size: 20px; line-height: 1.5; max-width: 670px; margin: 40px 0; }
+@media (max-width: 900px) {
+  .article-layout { grid-template-columns: 1fr; gap: 24px; }
+}
+
 .article-body { max-width: 720px; }
 .article-body p { font-size: 12px; line-height: 1.4; color: var(--text-primary); margin-bottom: 24px; }
 
