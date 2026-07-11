@@ -205,11 +205,8 @@ section { padding: 80px 0; }
 
 .section-cream { background: var(--bg-cream); }
 
-.philosophy-band { background: var(--bg-cream); padding: 56px 0 1px; }
-.philosophy-band .grid-4, .philosophy-band .grid-5 { margin-top: 0; }
-.philosophy-band .grid-4 { border-bottom: 2px solid #000; }
-.philosophy-band .grid-4 .pillar { border-left: 2px solid #000; }
-.philosophy-band .grid-4 .pillar:first-child { border-left: none; }
+.philosophy-band { padding-top: 56px; }
+.philosophy-band .grid-4 { margin-top: 0; }
 .section-black { background: var(--black-section); color: var(--text-inverse); }
 
 /* Shared photographic treatment — applied to every hero/card image sitewide so
@@ -367,7 +364,7 @@ section { padding: 80px 0; }
 
 .about-body:last-of-type { margin-bottom: 41px; }
 
-.grid-5 {
+.grid-4, .grid-5 {
   margin-top: 0;
   padding-bottom: 0;
   border-bottom: 2px solid var(--bg-cream);
@@ -375,7 +372,7 @@ section { padding: 80px 0; }
   background: var(--bg-cream);
 }
 
-.grid-5 .pillar, .grid-5 .pillar:first-child {
+.grid-4 .pillar, .grid-4 .pillar:first-child, .grid-5 .pillar, .grid-5 .pillar:first-child {
   background: var(--bg-white);
   border-left: none;
   padding: 40px;
@@ -385,42 +382,23 @@ section { padding: 80px 0; }
   justify-content: space-between;
 }
 
-.grid-5 .pillar h4 { font-size: 12px; font-weight: 400; line-height: 1.4; margin-bottom: 0; }
-.grid-5 .pillar p { font-size: 12px; font-weight: 400; line-height: 1.4; color: var(--text-muted); }
+.grid-4 .pillar h4, .grid-5 .pillar h4 { font-size: 12px; font-weight: 400; line-height: 1.4; margin-bottom: 0; }
+.grid-4 .pillar p, .grid-5 .pillar p { font-size: 12px; font-weight: 400; line-height: 1.4; color: var(--text-muted); }
 
 .philosophy-lead { font-size: 18px; font-weight: 700; line-height: 1.5; }
 .philosophy-body { font-size: 15px; line-height: 1.6; }
-
-@media (max-width: 900px) {
-  .grid-4 .pillar { border-left: none; padding-left: 0; }
-}
 
 @media (max-width: 720px) {
   .philosophy-heading { font-size: 32px; }
   .philosophy-lead { font-size: 20px; font-weight: 400; }
   .philosophy-body { font-size: 16px; }
 
-  .grid-4 {
-    grid-template-columns: 1fr;
-    gap: 0;
-    border-bottom: none;
-  }
-  .grid-4 .pillar {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 220px;
-    padding: 40px 0;
-    border-top: 1px solid #EEE;
-  }
-  .grid-4 .pillar h4 { margin-bottom: 0; }
-
   .about-hero { padding: 0 12px; }
   .about-hero img { height: 320px; }
   .about-philosophy { padding: 0 24px; }
 
-  .grid-5 { grid-template-columns: 1fr; gap: 1px; }
-  .grid-5 .pillar { padding: 24px; min-height: 0; }
+  .grid-4, .grid-5 { grid-template-columns: 1fr; gap: 1px; }
+  .grid-4 .pillar, .grid-5 .pillar { padding: 24px; min-height: 0; }
 }
 
 /* ---------- Past Experiences page (live measurements) ---------- */
