@@ -27,6 +27,7 @@ const LEADER_COLOR = 'rgba(0,0,0,0.18)';
 
 const ROTATE_SPEED = 0.09; // degrees per frame — slow, calm drift
 const TILT = -22;
+const START_LNG = -175; // Pacific-centered start view — tweak this to nudge the initial framing
 const LEADER_GAP = 22; // CSS px between a marker dot and its pill
 
 // "live ledger" pill cycling — a dot + its pill only exist together, briefly,
@@ -99,7 +100,7 @@ async function initGlobe() {
 
   const projection = d3geo.geoOrthographic().clipAngle(90);
   const path = d3geo.geoPath(projection, ctx);
-  const rotation = [0, TILT];
+  const rotation = [START_LNG, TILT]; // starts on the Pacific/Asia-Australia view (Siargao + Melbourne both in frame)
   const rotatePoint = (p) => d3geo.geoRotation(rotation)(p);
 
   const markers = ITEMS.map((p) => {
