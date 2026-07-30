@@ -153,94 +153,114 @@
     </div>
   </section>
 
-  <!-- 4. PORTFOLIO — sticky stack: each project pins full-viewport as the
-       next one scrolls up over it, one at a time, in sequence. -->
-  <section id="portfolio">
-    <div class="wrap" style="padding:80px 0 40px;">
-      <h1 class="h-section" style="margin-bottom:16px;">Selected work.</h1>
-      <p class="muted" style="max-width:480px;">Eight projects, spatial and digital. Keep scrolling.</p>
-    </div>
-    <div class="case-stack">
-      <a class="case-stack-card" href="archives/non5.html">
-        <div class="case-stack-bg" style="background-image:url('images/rVR5fesY23OZUwkbwT2rTRcPCE.png')"></div>
-        <div class="case-stack-content">
-          <p class="case-stack-num">01 / 08</p>
-          <p class="case-stack-tag">Spatial &amp; Experience Design</p>
-          <h2 class="case-stack-title">NON5 Lemon Marmalade &amp; Hibiscus — NON World</h2>
-          <p class="case-stack-desc">A multi-zone dining activation in Fitzroy Gardens for NON World's product launch.</p>
-          <span class="case-stack-link">View case study →</span>
+  <!-- 4. PORTFOLIO — progress carousel: autoplays through each project, a
+       segmented progress bar per nav button drives advancement, click a
+       button to jump straight to that project. -->
+  <section id="portfolio" class="section-cream">
+    <div class="wrap">
+      <h1 class="h-section" style="margin-bottom:32px;">Selected work.</h1>
+      <div class="case-carousel" data-duration="5000">
+        <div class="case-carousel-stage">
+          <div class="case-carousel-slide is-active" style="background-image:url('images/rVR5fesY23OZUwkbwT2rTRcPCE.png')">
+            <div class="case-carousel-overlay">
+              <p class="case-carousel-tag">Spatial &amp; Experience Design</p>
+              <h2 class="case-carousel-title">NON5 Lemon Marmalade &amp; Hibiscus — NON World</h2>
+              <a class="case-carousel-link" href="archives/non5.html">View case study →</a>
+            </div>
+          </div>
+          <div class="case-carousel-slide" style="background-image:url('images/royal-exhibition-building-hero.jpg')">
+            <div class="case-carousel-overlay">
+              <p class="case-carousel-tag">Spatial &amp; Experience Design</p>
+              <h2 class="case-carousel-title">Royal Exhibition Building — City of Melbourne</h2>
+              <a class="case-carousel-link" href="archives/royal-exhibition-building.html">View case study →</a>
+            </div>
+          </div>
+          <div class="case-carousel-slide" style="background-image:url('images/zErcIbnLSrh1KU97tNQwuKarY.jpg')">
+            <div class="case-carousel-overlay">
+              <p class="case-carousel-tag">Spatial &amp; Experience Design</p>
+              <h2 class="case-carousel-title">Table Talks x MasterChef David Tan</h2>
+              <a class="case-carousel-link" href="archives/aster-bar-x-masterchef-david-tan.html">View case study →</a>
+            </div>
+          </div>
+          <div class="case-carousel-slide" style="background-image:url('videos/portfolio/dehusk-poster.jpg')">
+            <div class="case-carousel-overlay">
+              <p class="case-carousel-tag">Brand &amp; Digital Design</p>
+              <h2 class="case-carousel-title">Dehusk</h2>
+              <a class="case-carousel-link" href="work/dehusk.html">View case study →</a>
+            </div>
+          </div>
+          <div class="case-carousel-slide" style="background-image:url('videos/portfolio/aire-du-verseau-poster.jpg')">
+            <div class="case-carousel-overlay">
+              <p class="case-carousel-tag">Brand &amp; Digital Design</p>
+              <h2 class="case-carousel-title">L'Aire du Verseau</h2>
+              <a class="case-carousel-link" href="work/aire-du-verseau.html">View case study →</a>
+            </div>
+          </div>
+          <div class="case-carousel-slide" style="background-image:url('videos/portfolio/renouvailes-poster.jpg')">
+            <div class="case-carousel-overlay">
+              <p class="case-carousel-tag">Brand &amp; Digital Design</p>
+              <h2 class="case-carousel-title">Renouv'ailes</h2>
+              <a class="case-carousel-link" href="work/renouvailes.html">View case study →</a>
+            </div>
+          </div>
+          <div class="case-carousel-slide" style="background-image:url('videos/portfolio/ananda-poster.jpg')">
+            <div class="case-carousel-overlay">
+              <p class="case-carousel-tag">Brand &amp; Digital Design</p>
+              <h2 class="case-carousel-title">Ananda Bungalows</h2>
+              <a class="case-carousel-link" href="work/ananda.html">View case study →</a>
+            </div>
+          </div>
+          <div class="case-carousel-slide" style="background-image:url('videos/portfolio/jonasmouttet-poster.jpg')">
+            <div class="case-carousel-overlay">
+              <p class="case-carousel-tag">Personal brand &amp; content platform</p>
+              <h2 class="case-carousel-title">Jonas Mouttet</h2>
+              <a class="case-carousel-link" href="work/jonasmouttet.html">View case study →</a>
+            </div>
+          </div>
         </div>
-      </a>
-      <a class="case-stack-card" href="archives/royal-exhibition-building.html">
-        <div class="case-stack-bg" style="background-image:url('images/royal-exhibition-building-hero.jpg')"></div>
-        <div class="case-stack-content">
-          <p class="case-stack-num">02 / 08</p>
-          <p class="case-stack-tag">Spatial &amp; Experience Design</p>
-          <h2 class="case-stack-title">Royal Exhibition Building — City of Melbourne</h2>
-          <p class="case-stack-desc">An open-air dining experience across Carlton Gardens and the Royal Exhibition Building.</p>
-          <span class="case-stack-link">View case study →</span>
+        <div class="case-carousel-nav">
+          <button type="button" class="case-carousel-btn is-active">
+            <h4>NON5 &times; NON World</h4>
+            <p>Spatial &amp; Experience Design</p>
+            <span class="case-carousel-progress"><i></i></span>
+          </button>
+          <button type="button" class="case-carousel-btn">
+            <h4>Royal Exhibition Building</h4>
+            <p>Spatial &amp; Experience Design</p>
+            <span class="case-carousel-progress"><i></i></span>
+          </button>
+          <button type="button" class="case-carousel-btn">
+            <h4>MasterChef David Tan</h4>
+            <p>Spatial &amp; Experience Design</p>
+            <span class="case-carousel-progress"><i></i></span>
+          </button>
+          <button type="button" class="case-carousel-btn">
+            <h4>Dehusk</h4>
+            <p>Brand &amp; Digital Design</p>
+            <span class="case-carousel-progress"><i></i></span>
+          </button>
+          <button type="button" class="case-carousel-btn">
+            <h4>L'Aire du Verseau</h4>
+            <p>Brand &amp; Digital Design</p>
+            <span class="case-carousel-progress"><i></i></span>
+          </button>
+          <button type="button" class="case-carousel-btn">
+            <h4>Renouv'ailes</h4>
+            <p>Brand &amp; Digital Design</p>
+            <span class="case-carousel-progress"><i></i></span>
+          </button>
+          <button type="button" class="case-carousel-btn">
+            <h4>Ananda Bungalows</h4>
+            <p>Brand &amp; Digital Design</p>
+            <span class="case-carousel-progress"><i></i></span>
+          </button>
+          <button type="button" class="case-carousel-btn">
+            <h4>Jonas Mouttet</h4>
+            <p>Personal brand &amp; content platform</p>
+            <span class="case-carousel-progress"><i></i></span>
+          </button>
         </div>
-      </a>
-      <a class="case-stack-card" href="archives/aster-bar-x-masterchef-david-tan.html">
-        <div class="case-stack-bg" style="background-image:url('images/zErcIbnLSrh1KU97tNQwuKarY.jpg')"></div>
-        <div class="case-stack-content">
-          <p class="case-stack-num">03 / 08</p>
-          <p class="case-stack-tag">Spatial &amp; Experience Design</p>
-          <h2 class="case-stack-title">Table Talks x MasterChef David Tan</h2>
-          <p class="case-stack-desc">A five-course sensory journey with MasterChef finalist David Tan.</p>
-          <span class="case-stack-link">View case study →</span>
-        </div>
-      </a>
-      <a class="case-stack-card" href="work/dehusk.html">
-        <div class="case-stack-bg" style="background-image:url('videos/portfolio/dehusk-poster.jpg')"></div>
-        <div class="case-stack-content">
-          <p class="case-stack-num">04 / 08</p>
-          <p class="case-stack-tag">Brand &amp; Digital Design</p>
-          <h2 class="case-stack-title">Dehusk</h2>
-          <p class="case-stack-desc">Launching the Philippines' first locally-produced barista coconut milk with a shop-ready brand site.</p>
-          <span class="case-stack-link">View case study →</span>
-        </div>
-      </a>
-      <a class="case-stack-card" href="work/aire-du-verseau.html">
-        <div class="case-stack-bg" style="background-image:url('videos/portfolio/aire-du-verseau-poster.jpg')"></div>
-        <div class="case-stack-content">
-          <p class="case-stack-num">05 / 08</p>
-          <p class="case-stack-tag">Brand &amp; Digital Design</p>
-          <h2 class="case-stack-title">L'Aire du Verseau</h2>
-          <p class="case-stack-desc">A 1700 Jura farmhouse retreat, structured around dual audiences — seminars and families.</p>
-          <span class="case-stack-link">View case study →</span>
-        </div>
-      </a>
-      <a class="case-stack-card" href="work/renouvailes.html">
-        <div class="case-stack-bg" style="background-image:url('videos/portfolio/renouvailes-poster.jpg')"></div>
-        <div class="case-stack-content">
-          <p class="case-stack-num">06 / 08</p>
-          <p class="case-stack-tag">Brand &amp; Digital Design</p>
-          <h2 class="case-stack-title">Renouv'ailes</h2>
-          <p class="case-stack-desc">A fasting-and-hiking retreat program in the Swiss Jura, balancing structure with warmth.</p>
-          <span class="case-stack-link">View case study →</span>
-        </div>
-      </a>
-      <a class="case-stack-card" href="work/ananda.html">
-        <div class="case-stack-bg" style="background-image:url('videos/portfolio/ananda-poster.jpg')"></div>
-        <div class="case-stack-content">
-          <p class="case-stack-num">07 / 08</p>
-          <p class="case-stack-tag">Brand &amp; Digital Design</p>
-          <h2 class="case-stack-title">Ananda Bungalows</h2>
-          <p class="case-stack-desc">A boutique Siargao bungalow stay, building brand trust beyond the OTA listing pages.</p>
-          <span class="case-stack-link">View case study →</span>
-        </div>
-      </a>
-      <a class="case-stack-card" href="work/jonasmouttet.html">
-        <div class="case-stack-bg" style="background-image:url('videos/portfolio/jonasmouttet-poster.jpg')"></div>
-        <div class="case-stack-content">
-          <p class="case-stack-num">08 / 08</p>
-          <p class="case-stack-tag">Personal brand &amp; content platform</p>
-          <h2 class="case-stack-title">Jonas Mouttet</h2>
-          <p class="case-stack-desc">A personal brand platform unifying years of content across video, articles and commerce.</p>
-          <span class="case-stack-link">View case study →</span>
-        </div>
-      </a>
+      </div>
     </div>
   </section>
 
@@ -359,6 +379,53 @@
 
 <script src="js/site.js" data-base=""></script>
 <script>
+// Portfolio progress carousel: each nav button's progress bar fills over
+// `data-duration` ms (CSS transition, not a rAF loop) and auto-advances to
+// the next slide when it completes; clicking a button jumps straight to it.
+(function () {
+  var root = document.querySelector('.case-carousel');
+  if (!root) return;
+
+  var duration = parseInt(root.getAttribute('data-duration'), 10) || 5000;
+  var slides = root.querySelectorAll('.case-carousel-slide');
+  var buttons = root.querySelectorAll('.case-carousel-btn');
+  var timer = null;
+  var current = 0;
+
+  function goTo(index) {
+    clearTimeout(timer);
+    current = index;
+
+    slides.forEach(function (slide, i) { slide.classList.toggle('is-active', i === index); });
+    buttons.forEach(function (btn, i) { btn.classList.toggle('is-active', i === index); });
+
+    // Snap every bar back to empty with no transition, force a reflow so
+    // the browser commits that state, then re-enable the transition on the
+    // active bar and grow it to 100% — the standard "restart a CSS
+    // transition" trick, otherwise the browser coalesces the reset and the
+    // regrowth into nothing.
+    buttons.forEach(function (btn) {
+      var fill = btn.querySelector('.case-carousel-progress i');
+      fill.style.transition = 'none';
+      fill.style.width = '0%';
+    });
+    void root.offsetWidth;
+    var activeFill = buttons[index].querySelector('.case-carousel-progress i');
+    activeFill.style.transition = 'width ' + duration + 'ms linear';
+    activeFill.style.width = '100%';
+
+    timer = setTimeout(function () {
+      goTo((current + 1) % slides.length);
+    }, duration);
+  }
+
+  buttons.forEach(function (btn, i) {
+    btn.addEventListener('click', function () { goTo(i); });
+  });
+
+  goTo(0);
+})();
+
 // Process section: pinned scroll-jack. As the outer track scrolls past the
 // pinned stage, translate the track left so each step slides in from the
 // right and exits to the left. Disabled on narrow viewports and when the

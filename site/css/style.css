@@ -683,83 +683,66 @@ section { padding: 80px 0; }
   .related-cards { grid-template-columns: 1fr; }
 }
 
-/* ---------- Portfolio sticky stack (Studio page) ----------
-   Each card is position:sticky at top:0 and full viewport height. Pure CSS —
-   no scroll JS needed: later cards in the DOM naturally paint over earlier
-   ones once both are pinned, which is what produces the "next project
-   slides up and covers the last one" effect. */
+/* ---------- Portfolio progress carousel (Studio page) ---------- */
 
-.case-stack { position: relative; }
-
-.case-stack-card {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  display: flex;
-  align-items: flex-end;
+.case-carousel-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
   overflow: hidden;
-  color: var(--text-inverse);
+  border-radius: var(--radius);
 }
 
-.case-stack-bg {
+.case-carousel-slide {
   position: absolute;
   inset: 0;
   background-size: cover;
   background-position: center;
   filter: saturate(1.08) contrast(1.05);
+  opacity: 0;
+  transition: opacity 0.5s ease;
 }
 
-.case-stack-card::after {
+.case-carousel-slide.is-active {
+  opacity: 1;
+  z-index: 1;
+}
+
+.case-carousel-slide::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.25) 55%, rgba(0,0,0,0.75) 100%);
+  background: linear-gradient(to bottom, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.2) 55%, rgba(0,0,0,0.7) 100%);
 }
 
-.case-stack-content {
-  position: relative;
+.case-carousel-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
   z-index: 1;
-  width: 100%;
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 0 var(--gutter) 72px;
+  padding: 32px 40px;
+  color: var(--text-inverse);
 }
 
-.case-stack-num {
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  color: rgba(255,255,255,0.65);
-  margin-bottom: 12px;
-}
-
-.case-stack-tag {
+.case-carousel-tag {
   font-size: 12px;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: rgba(255,255,255,0.75);
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
-.case-stack-title {
+.case-carousel-title {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: 42px;
-  line-height: 1.1;
-  letter-spacing: -1px;
-  max-width: 700px;
+  font-size: 32px;
+  line-height: 1.15;
+  max-width: 640px;
   margin-bottom: 16px;
 }
 
-.case-stack-desc {
-  font-size: 16px;
-  line-height: 1.5;
-  color: rgba(255,255,255,0.85);
-  max-width: 480px;
-  margin-bottom: 24px;
-}
-
-.case-stack-link {
-  display: inline-block;
+.case-carousel-link {
   font-size: 12px;
   letter-spacing: 0.08em;
   color: var(--text-inverse);
@@ -767,10 +750,66 @@ section { padding: 80px 0; }
   padding-bottom: 4px;
 }
 
+.case-carousel-nav {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: #EEE;
+  margin-top: 1px;
+}
+
+.case-carousel-btn {
+  position: relative;
+  background: var(--bg-cream);
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  padding: 16px 20px 14px;
+  overflow: hidden;
+  opacity: 0.55;
+  transition: opacity 0.3s ease;
+}
+
+.case-carousel-btn.is-active,
+.case-carousel-btn:hover {
+  opacity: 1;
+}
+
+.case-carousel-btn h4 {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.case-carousel-btn p {
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.case-carousel-progress {
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: rgba(0,0,0,0.08);
+}
+
+.case-carousel-progress i {
+  display: block;
+  height: 100%;
+  width: 0%;
+  background: var(--accent);
+}
+
 @media (max-width: 720px) {
-  .case-stack-title { font-size: 28px; letter-spacing: -0.5px; }
-  .case-stack-desc { font-size: 14px; }
-  .case-stack-content { padding-bottom: 48px; }
+  .case-carousel-nav { grid-template-columns: repeat(2, 1fr); }
+  .case-carousel-title { font-size: 22px; }
+  .case-carousel-overlay { padding: 20px 24px; }
+  .case-carousel-btn p { display: none; }
 }
 
 /* ---------- Studio page: discipline card animations ---------- */
