@@ -518,15 +518,6 @@ section { padding: 80px 0; }
   filter: blur(0);
 }
 
-/* Same layer, but a <video> instead of a background-image div (portfolio
-   cards with a hover-preview clip) — background-size/position are no-ops on
-   <video>, object-fit/width/height do the equivalent job. */
-video.feature-card-bg {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
 .feature-card::after {
   content: "";
   position: absolute;
@@ -692,30 +683,95 @@ video.feature-card-bg {
   .related-cards { grid-template-columns: 1fr; }
 }
 
-/* ---------- Portfolio filter (Studio page) ---------- */
+/* ---------- Portfolio sticky stack (Studio page) ----------
+   Each card is position:sticky at top:0 and full viewport height. Pure CSS —
+   no scroll JS needed: later cards in the DOM naturally paint over earlier
+   ones once both are pinned, which is what produces the "next project
+   slides up and covers the last one" effect. */
 
-.portfolio-filter {
+.case-stack { position: relative; }
+
+.case-stack-card {
+  position: sticky;
+  top: 0;
+  height: 100vh;
   display: flex;
-  gap: 24px;
-  flex-wrap: wrap;
-  margin-bottom: 32px;
-  border-bottom: 1px solid #EEE;
-  padding-bottom: 24px;
+  align-items: flex-end;
+  overflow: hidden;
+  color: var(--text-inverse);
 }
 
-.portfolio-filter button {
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  font-family: var(--font-sans);
+.case-stack-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  filter: saturate(1.08) contrast(1.05);
+}
+
+.case-stack-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.25) 55%, rgba(0,0,0,0.75) 100%);
+}
+
+.case-stack-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--gutter) 72px;
+}
+
+.case-stack-num {
   font-size: 12px;
-  letter-spacing: 0.02em;
-  color: var(--text-secondary);
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.65);
+  margin-bottom: 12px;
 }
 
-.portfolio-filter button:hover { color: var(--accent); }
-.portfolio-filter button.is-active { color: var(--accent); font-weight: 700; }
+.case-stack-tag {
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.75);
+  margin-bottom: 12px;
+}
+
+.case-stack-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 42px;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  max-width: 700px;
+  margin-bottom: 16px;
+}
+
+.case-stack-desc {
+  font-size: 16px;
+  line-height: 1.5;
+  color: rgba(255,255,255,0.85);
+  max-width: 480px;
+  margin-bottom: 24px;
+}
+
+.case-stack-link {
+  display: inline-block;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--text-inverse);
+  border-bottom: 1px solid rgba(255,255,255,0.6);
+  padding-bottom: 4px;
+}
+
+@media (max-width: 720px) {
+  .case-stack-title { font-size: 28px; letter-spacing: -0.5px; }
+  .case-stack-desc { font-size: 14px; }
+  .case-stack-content { padding-bottom: 48px; }
+}
 
 /* ---------- Studio page: discipline card animations ---------- */
 
@@ -1107,17 +1163,6 @@ video.feature-card-bg {
     padding: 0 0 32px;
   }
   .process-dots { display: none; }
-}
-
-.feature-card-placeholder {
-  position: relative;
-  aspect-ratio: 16/9;
-  background: var(--bg-cream);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-  text-align: center;
 }
 
 /* ---------- Contact / Subscribe / Join ---------- */
