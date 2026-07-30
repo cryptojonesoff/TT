@@ -975,28 +975,123 @@ section { padding: 80px 0; }
   }
 }
 
-/* Process steps (Studio page) — reuses the sitewide .reveal-on-scroll
-   fade (see site.js's IntersectionObserver) and layers a slight upward
-   slide + per-step stagger on top, so the 4 steps read in sequence
-   instead of appearing all at once. */
+/* Process (Studio page) — a pinned section: the outer track is 4 viewport-
+   heights tall, the stage sticks to the top of the viewport for that whole
+   scroll range, and JS translates the track left as the user scrolls, so
+   each step slides in from the right and exits to the left in sequence.
+   Falls back to a plain stacked list on mobile and prefers-reduced-motion,
+   where scroll-jacking is either awkward (touch) or unwanted (motion). */
 
-.process-step {
-  transform: translateY(16px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+.process-pin-wrap { padding: 0; }
+
+.process-pin-track-outer { height: 400vh; }
+
+.process-stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--bg-cream);
+  display: flex;
+  align-items: center;
 }
 
-.process-step.is-visible { transform: translateY(0); }
+.process-stage-inner {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
 
-.process-step:nth-of-type(1) { transition-delay: 0s; }
-.process-step:nth-of-type(2) { transition-delay: 0.15s; }
-.process-step:nth-of-type(3) { transition-delay: 0.3s; }
-.process-step:nth-of-type(4) { transition-delay: 0.45s; }
+.process-stage-left { flex: 0 0 38%; }
 
-@media (prefers-reduced-motion: reduce) {
-  .process-step {
-    transform: none;
-    transition: none;
+.process-stage-right {
+  flex: 1;
+  overflow: hidden;
+  border-left: 1px solid #E4E1D8;
+  padding-left: 64px;
+}
+
+.process-track {
+  display: flex;
+  width: 400%;
+  will-change: transform;
+}
+
+.process-slide {
+  flex: 0 0 25%;
+  width: 25%;
+  box-sizing: border-box;
+  padding-right: 64px;
+}
+
+.process-slide-num {
+  display: block;
+  font-size: 56px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--accent);
+  opacity: 0.18;
+  margin-bottom: 16px;
+}
+
+.process-slide-title {
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1.25;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+
+.process-slide-desc {
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text-muted);
+  max-width: 380px;
+}
+
+.process-dots { display: flex; gap: 8px; }
+
+.process-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #E4E1D8;
+  transition: background 0.3s ease;
+}
+
+.process-dot.is-active { background: var(--accent); }
+
+@media (max-width: 900px) {
+  .process-stage-left { flex-basis: 44%; }
+  .process-slide-num { font-size: 44px; }
+  .process-slide-title { font-size: 22px; }
+}
+
+@media (max-width: 720px), (prefers-reduced-motion: reduce) {
+  .process-pin-track-outer { height: auto; }
+  .process-stage {
+    position: static;
+    height: auto;
+    display: block;
+    padding: 64px 0;
   }
+  .process-stage-inner { display: block; }
+  .process-stage-left { margin-bottom: 40px; }
+  .process-stage-right {
+    border-left: none;
+    padding-left: 0;
+    overflow: visible;
+  }
+  .process-track {
+    display: block;
+    width: auto;
+    transform: none !important;
+  }
+  .process-slide {
+    width: 100%;
+    padding: 0 0 32px;
+  }
+  .process-dots { display: none; }
 }
 
 .feature-card-placeholder {

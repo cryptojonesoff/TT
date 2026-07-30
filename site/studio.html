@@ -189,26 +189,46 @@
     </div>
   </section>
 
-  <!-- 5. PROCESS -->
-  <section>
-    <div class="wrap">
-      <h1 class="h-section" style="margin-bottom:48px;">How we work.</h1>
-      <div class="grid-4">
-        <div class="pillar reveal-on-scroll process-step">
-          <h4>01 — Listening &amp; diagnosis</h4>
-          <p>Understand the context, the goal, the brand.</p>
-        </div>
-        <div class="pillar reveal-on-scroll process-step">
-          <h4>02 — Concept &amp; creative direction</h4>
-          <p>A narrative proposal connecting space and digital.</p>
-        </div>
-        <div class="pillar reveal-on-scroll process-step">
-          <h4>03 — Design &amp; production</h4>
-          <p>Execution, coordinating vendors where needed.</p>
-        </div>
-        <div class="pillar reveal-on-scroll process-step">
-          <h4>04 — Delivery &amp; follow-up</h4>
-          <p>Implementation and post-delivery support.</p>
+  <!-- 5. PROCESS — pinned section: stays fixed in view while scrolling drives
+       the steps sliding right-to-left, filmstrip-style. -->
+  <section class="process-pin-wrap" id="process">
+    <div class="process-pin-track-outer">
+      <div class="process-stage">
+        <div class="wrap process-stage-inner">
+          <div class="process-stage-left">
+            <h1 class="h-section" style="margin-bottom:24px;">How we work.</h1>
+            <p class="muted" style="max-width:300px; margin-bottom:32px;">Four steps, from first conversation to post-launch support. Keep scrolling.</p>
+            <div class="process-dots">
+              <span class="process-dot is-active"></span>
+              <span class="process-dot"></span>
+              <span class="process-dot"></span>
+              <span class="process-dot"></span>
+            </div>
+          </div>
+          <div class="process-stage-right">
+            <div class="process-track">
+              <div class="process-slide">
+                <span class="process-slide-num">01</span>
+                <h3 class="process-slide-title">Listening &amp; diagnosis</h3>
+                <p class="process-slide-desc">Understand the context, the goal, the brand.</p>
+              </div>
+              <div class="process-slide">
+                <span class="process-slide-num">02</span>
+                <h3 class="process-slide-title">Concept &amp; creative direction</h3>
+                <p class="process-slide-desc">A narrative proposal connecting space and digital.</p>
+              </div>
+              <div class="process-slide">
+                <span class="process-slide-num">03</span>
+                <h3 class="process-slide-title">Design &amp; production</h3>
+                <p class="process-slide-desc">Execution, coordinating vendors where needed.</p>
+              </div>
+              <div class="process-slide">
+                <span class="process-slide-num">04</span>
+                <h3 class="process-slide-title">Delivery &amp; follow-up</h3>
+                <p class="process-slide-desc">Implementation and post-delivery support.</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -308,6 +328,58 @@
       applyFilter(link.getAttribute('data-filter-link'));
     });
   });
+})();
+
+// Process section: pinned scroll-jack. As the outer track scrolls past the
+// pinned stage, translate the track left so each step slides in from the
+// right and exits to the left. Disabled on narrow viewports and when the
+// visitor prefers reduced motion — the CSS falls back to a plain static
+// stacked list in both cases, so this just avoids fighting that with an
+// inline transform.
+(function () {
+  var wrap = document.querySelector('.process-pin-wrap');
+  if (!wrap) return;
+
+  var outer = wrap.querySelector('.process-pin-track-outer');
+  var stage = wrap.querySelector('.process-stage');
+  var track = wrap.querySelector('.process-track');
+  var dots = wrap.querySelectorAll('.process-dot');
+
+  function pinDisabled() {
+    return window.matchMedia('(max-width: 720px)').matches ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }
+
+  function update() {
+    if (pinDisabled()) {
+      track.style.transform = '';
+      return;
+    }
+    var pinnedDistance = outer.offsetHeight - stage.offsetHeight;
+    var scrolled = -outer.getBoundingClientRect().top;
+    var progress = pinnedDistance > 0 ? Math.min(Math.max(scrolled / pinnedDistance, 0), 1) : 0;
+
+    track.style.transform = 'translateX(-' + (progress * 75) + '%)';
+
+    var activeIndex = Math.round(progress * (dots.length - 1));
+    dots.forEach(function (dot, i) {
+      dot.classList.toggle('is-active', i === activeIndex);
+    });
+  }
+
+  var ticking = false;
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(function () {
+      update();
+      ticking = false;
+    });
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  update();
 })();
 </script>
 </body>
