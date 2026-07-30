@@ -179,9 +179,13 @@
           <span></span>
           <div><h2>Table Talks x MasterChef David Tan</h2><span class="date">Spatial &amp; Experience Design</span></div>
         </a>
-        <div class="feature-card-placeholder" data-category="digital-design">
-          <p class="wip-note" style="margin:0; border-left:none; padding-left:0;">Case study coming soon</p>
-        </div>
+        <a class="feature-card feature-card-video" style="aspect-ratio:3/4;" data-category="digital-design" href="work/dehusk.html">
+          <video class="feature-card-bg" poster="videos/portfolio/dehusk-poster.jpg" preload="none" muted loop playsinline>
+            <source src="videos/portfolio/dehusk-card.mp4" type="video/mp4">
+          </video>
+          <span></span>
+          <div><h2>Dehusk</h2><span class="date">Brand &amp; Digital Design</span></div>
+        </a>
         <div class="feature-card-placeholder" data-category="digital-management">
           <p class="wip-note" style="margin:0; border-left:none; padding-left:0;">Case study coming soon</p>
         </div>
@@ -304,6 +308,23 @@
 
 <script src="js/site.js" data-base=""></script>
 <script>
+(function () {
+  // Portfolio card videos: load nothing until hovered, play muted on
+  // mouseenter, pause and rewind on mouseleave so the card settles back
+  // on its poster frame.
+  document.querySelectorAll('.feature-card-video video').forEach(function (video) {
+    var card = video.closest('.feature-card-video');
+    card.addEventListener('mouseenter', function () {
+      video.currentTime = 0;
+      video.play().catch(function () {});
+    });
+    card.addEventListener('mouseleave', function () {
+      video.pause();
+      video.currentTime = 0;
+    });
+  });
+})();
+
 (function () {
   var buttons = document.querySelectorAll('.portfolio-filter button');
   var cards = document.querySelectorAll('#portfolio-grid [data-category]');
