@@ -702,6 +702,105 @@ section { padding: 80px 0; }
 .portfolio-filter button:hover { color: var(--accent); }
 .portfolio-filter button.is-active { color: var(--accent); font-weight: 700; }
 
+/* ---------- Studio page: discipline card animations ---------- */
+
+.disc-anim {
+  width: 100%;
+  aspect-ratio: 2 / 1;
+  margin-bottom: 28px;
+}
+
+.disc-anim svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* 01 — Spatial & Experience: a floor plan draws itself, then guests take their seats */
+
+.disc-anim--spatial .wall,
+.disc-anim--spatial .table,
+.disc-anim--spatial .chair {
+  fill: none;
+  stroke: var(--text-tertiary);
+  stroke-width: 1.2;
+}
+
+.disc-anim--spatial .guest {
+  fill: var(--accent);
+  stroke: none;
+  opacity: 0;
+}
+
+.disc-anim--spatial .wall     { stroke-dasharray: 540; animation: spatial-wall 6s ease-in-out infinite; }
+.disc-anim--spatial .table    { stroke-dasharray: 163; animation: spatial-table 6s ease-in-out infinite; }
+.disc-anim--spatial .chair-1  { stroke-dasharray: 38; animation: spatial-chair-1 6s ease-in-out infinite; }
+.disc-anim--spatial .chair-2  { stroke-dasharray: 38; animation: spatial-chair-2 6s ease-in-out infinite; }
+.disc-anim--spatial .chair-3  { stroke-dasharray: 38; animation: spatial-chair-3 6s ease-in-out infinite; }
+.disc-anim--spatial .chair-4  { stroke-dasharray: 38; animation: spatial-chair-4 6s ease-in-out infinite; }
+.disc-anim--spatial .chair-5  { stroke-dasharray: 38; animation: spatial-chair-5 6s ease-in-out infinite; }
+.disc-anim--spatial .chair-6  { stroke-dasharray: 38; animation: spatial-chair-6 6s ease-in-out infinite; }
+.disc-anim--spatial .guest-1  { animation: spatial-guest-1 6s ease-in-out infinite; }
+.disc-anim--spatial .guest-2  { animation: spatial-guest-2 6s ease-in-out infinite; }
+.disc-anim--spatial .guest-3  { animation: spatial-guest-3 6s ease-in-out infinite; }
+.disc-anim--spatial .guest-4  { animation: spatial-guest-4 6s ease-in-out infinite; }
+.disc-anim--spatial .guest-5  { animation: spatial-guest-5 6s ease-in-out infinite; }
+.disc-anim--spatial .guest-6  { animation: spatial-guest-6 6s ease-in-out infinite; }
+.disc-anim--spatial .scene    { animation: spatial-scene-fade 6s ease-in-out infinite; }
+
+/* Timeline (6s total): wall 0→1.2s, table 1.2→1.8s, chairs stagger 1.8→2.7s,
+   guests stagger 2.7→3.6s, hold/pause 3.6→4.6s, fade out 4.6→5.0s, blank
+   reset buffer 5.0→6.0s. */
+
+@keyframes spatial-wall {
+  0%  { stroke-dashoffset: 540; }
+  20% { stroke-dashoffset: 0; }
+}
+
+@keyframes spatial-table {
+  0%  { stroke-dashoffset: 163; }
+  20% { stroke-dashoffset: 163; }
+  30% { stroke-dashoffset: 0; }
+}
+
+@keyframes spatial-chair-1 { 0% { stroke-dashoffset: 38; } 30.0% { stroke-dashoffset: 38; } 34.2% { stroke-dashoffset: 0; } }
+@keyframes spatial-chair-2 { 0% { stroke-dashoffset: 38; } 32.2% { stroke-dashoffset: 38; } 36.3% { stroke-dashoffset: 0; } }
+@keyframes spatial-chair-3 { 0% { stroke-dashoffset: 38; } 34.3% { stroke-dashoffset: 38; } 38.5% { stroke-dashoffset: 0; } }
+@keyframes spatial-chair-4 { 0% { stroke-dashoffset: 38; } 36.5% { stroke-dashoffset: 38; } 40.7% { stroke-dashoffset: 0; } }
+@keyframes spatial-chair-5 { 0% { stroke-dashoffset: 38; } 38.7% { stroke-dashoffset: 38; } 42.8% { stroke-dashoffset: 0; } }
+@keyframes spatial-chair-6 { 0% { stroke-dashoffset: 38; } 40.8% { stroke-dashoffset: 38; } 45.0% { stroke-dashoffset: 0; } }
+
+@keyframes spatial-guest-1 { 0% { opacity: 0; } 45.0% { opacity: 0; } 49.2% { opacity: 1; } }
+@keyframes spatial-guest-2 { 0% { opacity: 0; } 47.2% { opacity: 0; } 51.3% { opacity: 1; } }
+@keyframes spatial-guest-3 { 0% { opacity: 0; } 49.3% { opacity: 0; } 53.5% { opacity: 1; } }
+@keyframes spatial-guest-4 { 0% { opacity: 0; } 51.5% { opacity: 0; } 55.7% { opacity: 1; } }
+@keyframes spatial-guest-5 { 0% { opacity: 0; } 53.7% { opacity: 0; } 57.8% { opacity: 1; } }
+@keyframes spatial-guest-6 { 0% { opacity: 0; } 55.8% { opacity: 0; } 60.0% { opacity: 1; } }
+
+@keyframes spatial-scene-fade {
+  0%     { opacity: 1; }
+  76.7%  { opacity: 1; }
+  83.3%  { opacity: 0; }
+  100%   { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .disc-anim--spatial .wall,
+  .disc-anim--spatial .table,
+  .disc-anim--spatial .chair {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+  .disc-anim--spatial .guest {
+    animation: none;
+    opacity: 1;
+  }
+  .disc-anim--spatial .scene {
+    animation: none;
+    opacity: 1;
+  }
+}
+
 .feature-card-placeholder {
   position: relative;
   aspect-ratio: 3/4;
