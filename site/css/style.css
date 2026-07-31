@@ -1304,6 +1304,58 @@ section { padding: 80px 0; }
   filter: saturate(1.08) contrast(1.05);
 }
 
+/* ---------- Deep-dive case study components (e.g. work/dehusk.html) ---------- */
+
+.case-subnav {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-top: 1px solid #EEE;
+  border-bottom: 1px solid #EEE;
+  margin-bottom: 56px;
+}
+.case-subnav a {
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+.case-subnav a:hover { color: var(--accent); }
+.case-subnav span { color: var(--text-faint); }
+
+.case-block { margin-bottom: 96px; }
+.case-block:last-child { margin-bottom: 0; }
+.case-block-head { max-width: 640px; margin-bottom: 32px; }
+.case-block-num { font-size: 12px; color: var(--accent); letter-spacing: 0.06em; margin-bottom: 12px; display: block; }
+
+/* Client-brand palette swatches, sized to sit inline with brand copy */
+.swatch-row { display: flex; flex-wrap: wrap; gap: 20px; margin: 32px 0; }
+.swatch { width: 128px; }
+.swatch-fill { height: 88px; border-radius: var(--radius); margin-bottom: 10px; border: 1px solid rgba(0,0,0,0.06); }
+.swatch-name { font-size: 12px; color: var(--text-primary); margin-bottom: 2px; }
+.swatch-hex { font-size: 11px; color: var(--text-muted); font-family: monospace; }
+
+/* Typography specimen block */
+.type-specimen { display: flex; flex-direction: column; gap: 24px; margin: 32px 0; }
+.type-specimen-row { display: flex; align-items: baseline; gap: 24px; padding-bottom: 20px; border-bottom: 1px solid #EEE; flex-wrap: wrap; }
+.type-specimen-row:last-child { border-bottom: none; }
+.type-specimen-sample { font-size: 40px; line-height: 1; }
+.type-specimen-meta { font-size: 12px; color: var(--text-muted); min-width: 160px; }
+.type-specimen-meta strong { display: block; color: var(--text-secondary); font-size: 13px; margin-bottom: 2px; }
+
+/* Small botanical icon row (client brand mark set) */
+.icon-row { display: flex; gap: 40px; flex-wrap: wrap; margin: 32px 0; align-items: flex-end; }
+.icon-row img { width: 56px; height: 56px; object-fit: contain; }
+
+/* Implementation feature checklist */
+.check-list { display: flex; flex-direction: column; gap: 20px; margin: 32px 0; }
+.check-list li { list-style: none; display: flex; gap: 14px; align-items: flex-start; }
+.check-list .check-mark { flex: 0 0 auto; width: 18px; height: 18px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 11px; display: flex; align-items: center; justify-content: center; margin-top: 1px; }
+.check-list-title { font-size: 13px; color: var(--text-primary); margin-bottom: 2px; }
+.check-list-desc { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+
 /* Public Ledger — full-bleed blurred background image, matching the live site
    (not a solid black card). Stats section sits over the image; the signup
    form sits in a plain dark section directly below. */
